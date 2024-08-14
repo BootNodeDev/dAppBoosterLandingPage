@@ -156,7 +156,7 @@ const Examples: FC<HTMLAttributes<HTMLElement>> = ({ ...restProps }) => {
       href: 'https://bootnodedev.github.io/dAppBooster/functions/sharedComponents_SignButton.SignButton.html',
       icon: <ImgSign />,
       text: 'Sign a message and get the signature',
-      title: 'Sign button',
+      title: 'Sign button.',
     },
   ]
 
