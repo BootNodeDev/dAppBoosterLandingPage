@@ -92,6 +92,16 @@ const End = styled.div`
   )}
 `
 
+const ConnectButton = styled(ConnectWalletButton)`
+  ${breakpointMediaQuery(
+    'desktopStart',
+    css`
+      font-size: 1.5rem;
+      height: 48px;
+    `,
+  )}
+`
+
 export const Header: FC<HTMLAttributes<HTMLElement>> = ({ ...restProps }) => {
   const { setTheme, theme } = useTheme()
 
@@ -106,7 +116,7 @@ export const Header: FC<HTMLAttributes<HTMLElement>> = ({ ...restProps }) => {
         <Menu />
         <End>
           <SwitchThemeButton onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')} />
-          <ConnectWalletButton />
+          <ConnectButton />
         </End>
         <MobileMenu />
       </Inner>
