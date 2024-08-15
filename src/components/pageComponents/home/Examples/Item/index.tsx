@@ -105,7 +105,7 @@ const Demo = styled.div`
   flex: 1;
   justify-content: center;
   min-width: 0;
-  padding: calc(var(--base-common-padding) * 6) var(--base-common-padding)
+  padding: calc(var(--base-common-padding) * 7) var(--base-common-padding)
     calc(var(--base-common-padding) * 4);
   position: relative;
 
@@ -113,7 +113,7 @@ const Demo = styled.div`
     'tabletPortraitStart',
     css`
       min-height: 205px;
-      padding: calc(var(--base-common-padding) * 6) calc(var(--base-common-padding) * 3)
+      padding: calc(var(--base-common-padding) * 7) calc(var(--base-common-padding) * 3)
         calc(var(--base-common-padding) * 3);
     `,
   )};
