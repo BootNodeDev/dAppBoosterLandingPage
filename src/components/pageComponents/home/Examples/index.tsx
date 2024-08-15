@@ -7,7 +7,6 @@ import { useAccount } from 'wagmi'
 
 import { Props as ItemProps } from '@/src/components/pageComponents/home/Examples/Item'
 import List from '@/src/components/pageComponents/home/Examples/List'
-import ImgAvatar from '@/src/components/pageComponents/home/Examples/assets/Avatar'
 import ImgEns from '@/src/components/pageComponents/home/Examples/assets/Ens'
 import ImgHash from '@/src/components/pageComponents/home/Examples/assets/Hash'
 import ImgInputAddress from '@/src/components/pageComponents/home/Examples/assets/InputAddress'
@@ -20,7 +19,6 @@ import ImgTokenList from '@/src/components/pageComponents/home/Examples/assets/T
 import ImgTransaction from '@/src/components/pageComponents/home/Examples/assets/Transaction'
 import ImgUserCheck from '@/src/components/pageComponents/home/Examples/assets/UserCheck'
 import ImgWallet from '@/src/components/pageComponents/home/Examples/assets/Wallet'
-import AvatarDemo from '@/src/components/pageComponents/home/Examples/demos/AvatarDemo'
 import ERC20ApproveAndTransferButtonDemo from '@/src/components/pageComponents/home/Examples/demos/ERC20ApproveAndTransferButtonDemo'
 import EnsNameDemo from '@/src/components/pageComponents/home/Examples/demos/EnsNameDemo'
 import HashDemo from '@/src/components/pageComponents/home/Examples/demos/HashDemo'
@@ -71,7 +69,19 @@ const Examples: FC<HTMLAttributes<HTMLElement>> = ({ ...restProps }) => {
       demo: <ConnectWalletButtonDemo />,
       href: 'https://bootnodedev.github.io/dAppBooster/index.html#md:wallet-setup',
       icon: <ImgWallet />,
-      text: 'Authenticate using an EVM Account',
+      text: (
+        <>
+          Connect to and disconnect from a cryptocurrency wallet, display your{' '}
+          <a
+            href="https://bootnodedev.github.io/dAppBooster/functions/sharedComponents_Avatar.Avatar.html"
+            rel="noreferrer"
+            target="_blank"
+          >
+            avatar
+          </a>{' '}
+          and address
+        </>
+      ),
       title: 'Wallet connectivity',
     },
     {
@@ -96,13 +106,6 @@ const Examples: FC<HTMLAttributes<HTMLElement>> = ({ ...restProps }) => {
       title: 'Token input',
     },
     {
-      demo: <TokenInputDemo singleToken />,
-      href: 'https://bootnodedev.github.io/dAppBooster/functions/sharedComponents_TokenInput.TokenInput.html',
-      icon: <ImgTokenInput />,
-      text: 'Input with max, user balance, decimals',
-      title: 'Token input single token',
-    },
-    {
       demo: <SwitchNetworkDemo />,
       href: 'https://bootnodedev.github.io/dAppBooster/functions/sharedComponents_SwitchNetwork.SwitchNetwork.html',
       icon: <ImgSwitch />,
@@ -115,13 +118,6 @@ const Examples: FC<HTMLAttributes<HTMLElement>> = ({ ...restProps }) => {
       icon: <ImgHash />,
       text: 'Copy, open in explorer',
       title: 'Hash component',
-    },
-    {
-      demo: <AvatarDemo address={address} size={80} />,
-      href: 'https://bootnodedev.github.io/dAppBooster/functions/sharedComponents_Avatar.Avatar.html',
-      icon: <ImgAvatar />,
-      text: 'Address blockie avatar image',
-      title: 'Avatar',
     },
     {
       demo: <SubgraphDemo />,
