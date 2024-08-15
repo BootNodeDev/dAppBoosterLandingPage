@@ -21,6 +21,7 @@ import {
   EstimatedUSDValue,
   Icon,
   MaxButton,
+  SingleToken,
   Textfield,
   Title,
   TopRow,
@@ -196,6 +197,18 @@ const TokenInput: FC<TokenInputProps> = ({
     return <div>When single token is true, a token is required.</div>
   }
 
+  const CurrentToken = () =>
+    selectedToken ? (
+      <>
+        <Icon $iconSize={selectIconSize}>
+          <TokenLogo size={selectIconSize} token={selectedToken} />
+        </Icon>
+        {selectedToken.symbol}
+      </>
+    ) : (
+      'Select'
+    )
+
   return (
     <>
       <Wrapper {...restProps}>
@@ -217,18 +230,15 @@ const TokenInput: FC<TokenInputProps> = ({
             )}
             value={amount}
           />
-          <DropdownButton onClick={showTokenSelect} singleOption={singleToken}>
-            {selectedToken ? (
-              <>
-                <Icon $iconSize={selectIconSize}>
-                  <TokenLogo size={selectIconSize} token={selectedToken} />
-                </Icon>
-                {selectedToken.symbol}
-              </>
-            ) : (
-              'Select'
-            )}
-          </DropdownButton>
+          {singleToken ? (
+            <SingleToken>
+              <CurrentToken />
+            </SingleToken>
+          ) : (
+            <DropdownButton onClick={showTokenSelect}>
+              <CurrentToken />
+            </DropdownButton>
+          )}
         </TopRow>
         <BottomRow>
           <EstimatedUSDValue>~$0.00</EstimatedUSDValue>

@@ -90,28 +90,12 @@ export const ChevronDown = styled(BaseChevronDown)`
   margin-left: var(--base-gap);
 `
 
-export const DropdownButton = styled(Button).attrs<{ singleOption?: boolean }>(
-  ({ children, singleOption }) => {
-    return {
-      className: 'tokenInputDropdownButton',
-      children: (
-        <>
-          {children}
-          {!singleOption && <ChevronDown />}
-        </>
-      ),
-    }
-  },
-)`
-  /* Dropdown button */
+const ButtonCSS = css`
   --theme-button-background-color: var(--theme-token-input-dropdown-button-background-color, #fff);
   --theme-button-background-color-hover: var(
     --theme-token-input-dropdown-button-background-color-hover,
     rgb(0 0 0 / 5%)
   );
-  ${(props) => props.singleOption && '--theme-button-background-color: transparent;'}
-  ${(props) => props.singleOption && '--theme-button-background-color-hover: transparent;'}
-
   --theme-button-border-color: var(--theme-token-input-dropdown-button-border-color, #e2e0e7);
   --theme-button-border-color-hover: var(
     --theme-token-input-dropdown-button-border-color-hover,
@@ -121,18 +105,15 @@ export const DropdownButton = styled(Button).attrs<{ singleOption?: boolean }>(
     --theme-token-input-dropdown-button-border-color-active,
     #e2e0e7
   );
-  ${(props) => props.singleOption && 'border: none;'}
-
   --theme-button-color: var(--theme-token-input-dropdown-button-color, #2e3048);
   --theme-button-color-hover: var(--theme-token-input-dropdown-button-color-hover, #2e3048);
 
+  flex-shrink: 0;
   font-size: 1.2rem;
   font-weight: 500;
-  flex-shrink: 0;
   height: auto;
   min-width: 100px;
   padding: var(--base-token-input-dropdown-button-padding, 0 var(--base-common-padding));
-  ${(props) => props.singleOption && 'cursor: auto;'}
 
   ${breakpointMediaQuery(
     'tabletPortraitStart',
@@ -141,6 +122,29 @@ export const DropdownButton = styled(Button).attrs<{ singleOption?: boolean }>(
       padding: var(--base-token-input-dropdown-button-padding, 0 var(--base-common-padding-xl));
     `,
   )}
+`
+
+export const DropdownButton = styled(Button).attrs(({ children }) => {
+  return {
+    className: 'tokenInputDropdownButton',
+    children: (
+      <>
+        {children}
+        <ChevronDown />
+      </>
+    ),
+  }
+})`
+  ${ButtonCSS}
+`
+
+export const SingleToken = styled.div.attrs({ className: 'tokenInputSingleToken' })`
+  align-items: center;
+  column-gap: var(--base-button-column-gap, var(--base-gap, 8px));
+  cursor: default;
+  display: flex;
+
+  ${ButtonCSS}
 `
 
 export const Error = styled.span`
