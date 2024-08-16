@@ -81,12 +81,16 @@ const Title = styled.h2`
 `
 
 const Text = styled.p`
-  color: var(--theme-color-text-primary);
   font-size: 1.6rem;
   font-weight: 500;
   line-height: 1.5;
   margin: 0;
   text-align: center;
+
+  &,
+  & a {
+    color: var(--theme-color-text-primary);
+  }
 
   ${breakpointMediaQuery(
     'tabletPortraitStart',
@@ -105,16 +109,15 @@ const Demo = styled.div`
   flex: 1;
   justify-content: center;
   min-width: 0;
-  padding: calc(var(--base-common-padding) * 7) var(--base-common-padding)
-    calc(var(--base-common-padding) * 4);
+  padding: calc(var(--base-common-padding) * 6) var(--base-common-padding)
+    calc(var(--base-common-padding) * 3);
   position: relative;
 
   ${breakpointMediaQuery(
     'tabletPortraitStart',
     css`
       min-height: 205px;
-      padding: calc(var(--base-common-padding) * 7) calc(var(--base-common-padding) * 3)
-        calc(var(--base-common-padding) * 3);
+      padding: calc(var(--base-common-padding) * 4) calc(var(--base-common-padding) * 3);
     `,
   )};
 `
@@ -131,7 +134,7 @@ export interface Props extends HTMLAttributes<HTMLDivElement> {
   demo: ReactNode
   href?: string
   icon: ReactNode
-  text: string
+  text: string | ReactNode
   title: string
 }
 
