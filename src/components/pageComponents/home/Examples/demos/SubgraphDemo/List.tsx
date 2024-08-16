@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import styled, { css } from 'styled-components'
 
 import { useSuspenseQuery } from '@tanstack/react-query'
@@ -7,11 +8,14 @@ import {
   Toast,
   SkeletonLoading,
   breakpointMediaQuery,
+  Item,
 } from 'db-ui-toolkit'
 import request from 'graphql-request'
 import { toast } from 'react-hot-toast'
 import { arbitrum, base, type Chain, optimism, polygon } from 'viem/chains'
 
+import { OptionsButton } from '@/src/components/pageComponents/home/Examples/demos/OptionsButton'
+import { OptionsDropdown } from '@/src/components/pageComponents/home/Examples/demos/OptionsDropdown'
 import ArbitrumDefault from '@/src/components/pageComponents/home/Examples/demos/assets/Arbitrum'
 import BaseDefault from '@/src/components/pageComponents/home/Examples/demos/assets/Base'
 import OptimismDefault from '@/src/components/pageComponents/home/Examples/demos/assets/Optimism'
@@ -44,15 +48,22 @@ const Wrapper = styled.div`
 
   display: flex;
   flex-direction: column;
-  max-width: 100%;
-  padding: 0 var(--base-common-padding-xl);
+  padding: var(--base-common-padding) var(--base-common-padding-xl) 0;
   row-gap: calc(var(--base-gap-xl) * 2);
+  width: 100%;
 
   ${breakpointMediaQuery(
     'tabletPortraitStart',
     css`
       padding: var(--base-common-padding-xl);
       row-gap: calc(var(--base-gap-xl) * 3);
+    `,
+  )}
+
+  ${breakpointMediaQuery(
+    'desktopStart',
+    css`
+      padding-top: calc(var(--base-common-padding) * 3);
     `,
   )}
 `
@@ -62,6 +73,7 @@ const Group = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: var(--base-gap-xl);
+  padding: var(--base-common-padding-xl);
 `
 
 const Title = styled.h3`
@@ -173,10 +185,7 @@ const Uniswap = withSuspenseAndRetry(({ chain }: { chain: Chain }) => {
 
   return (
     <Group>
-      <Title title={chain.name}>
-        Uniswap pools
-        {getNetworkIcon(chain.name.toLowerCase())}
-      </Title>
+      <Title title={chain.name}>Uniswap Pool {getNetworkIcon(chain.name.toLowerCase())}</Title>
       {data.map((position) => (
         <Row key={position.id}>
           <Name>{position.pool.symbol}</Name>
@@ -227,21 +236,42 @@ export const SkeletonLoadingItem = () => (
       minHeight: '133px',
       padding: '16px',
       rowGap: '16px',
-      width: '340px',
+      width: '100%',
     }}
   >
-    <SkeletonLoading style={{ width: '40%', height: '28px' }} />
-    <SkeletonLoading style={{ width: '100%', height: '19px' }} />
+    <SkeletonLoading style={{ width: '40%', height: '28px', paddingBottom: '8px' }} />
+    <SkeletonLoading style={{ width: '100%', height: '19.3px' }} />
+    <SkeletonLoading style={{ width: '100%', height: '19.3px' }} />
+    <SkeletonLoading style={{ width: '100%', height: '19.3px' }} />
   </SkeletonLoading>
 )
 
 const List = ({ ...restProps }) => {
+  const [currentChain, setCurrentChain] = useState<Chain | undefined>(uniswapNetworks[0])
+  const dropdownItems = [...uniswapNetworks, base]
+
   return (
     <Wrapper {...restProps}>
-      {uniswapNetworks.map((chain) => (
-        <Uniswap chain={chain} key={chain.id} suspenseFallback={<SkeletonLoadingItem />} />
-      ))}
-      <Aave suspenseFallback={<SkeletonLoadingItem />} />
+      <OptionsDropdown
+        button={
+          <OptionsButton>
+            {dropdownItems.find((item) => item.name === currentChain?.name)?.name}
+          </OptionsButton>
+        }
+        defaultActiveItem={0}
+        items={dropdownItems.map((item, index) => (
+          <Item key={index} onClick={() => setCurrentChain(item)}>
+            {item.name}
+          </Item>
+        ))}
+      />
+      {uniswapNetworks.map(
+        (chain) =>
+          currentChain === chain && (
+            <Uniswap chain={chain} key={chain.id} suspenseFallback={<SkeletonLoadingItem />} />
+          ),
+      )}
+      {currentChain === base && <Aave suspenseFallback={<SkeletonLoadingItem />} />}
     </Wrapper>
   )
 }
