@@ -152,7 +152,7 @@ const HashExplorer = styled(HashDemo)`
  * We use `HashInput` to validate an address or tx hash, and `Hash` to allow the
  * user to copy it or open it in an block explorer.
  */
-const HashInputDemo = ({ ...restProps }) => {
+const HashHandlingDemo = ({ ...restProps }) => {
   const [searchResult, setSearchResult] = useState<DetectedHash | null>(null)
   const [loading, setLoading] = useState<boolean | undefined>()
   const notFound = searchResult && searchResult.type === null
@@ -205,4 +205,4 @@ const HashInputDemo = ({ ...restProps }) => {
   )
 }
 
-export default HashInputDemo
+export default HashHandlingDemo

@@ -18,7 +18,7 @@ import ImgUserCheck from '@/src/components/pageComponents/home/Examples/assets/U
 import ImgWallet from '@/src/components/pageComponents/home/Examples/assets/Wallet'
 import ERC20ApproveAndTransferButtonDemo from '@/src/components/pageComponents/home/Examples/demos/ERC20ApproveAndTransferButtonDemo'
 import EnsNameDemo from '@/src/components/pageComponents/home/Examples/demos/EnsNameDemo'
-import HashInputDemo from '@/src/components/pageComponents/home/Examples/demos/HashInputDemo'
+import HashHandlingDemo from '@/src/components/pageComponents/home/Examples/demos/HashHandlingDemo'
 import SignMessageDemo from '@/src/components/pageComponents/home/Examples/demos/SignMessageDemo'
 import SubgraphDemo from '@/src/components/pageComponents/home/Examples/demos/SubgraphDemo'
 import SubgraphStatusDemo from '@/src/components/pageComponents/home/Examples/demos/SubgraphStatusDemo'
@@ -80,7 +80,7 @@ const Examples: FC<HTMLAttributes<HTMLElement>> = ({ ...restProps }) => {
       title: 'Wallet connectivity',
     },
     {
-      demo: <HashInputDemo />,
+      demo: <HashHandlingDemo />,
       href: 'https://bootnodedev.github.io/dAppBooster/functions/sharedComponents_Hash.Hash.html',
       icon: <ImgInputAddress />,
       text: (
