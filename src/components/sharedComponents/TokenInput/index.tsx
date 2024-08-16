@@ -165,7 +165,6 @@ const TokenInput: FC<TokenInputProps> = ({
   )
 
   const handleSetAmount = (amount: string) => {
-    console.log('amount', amount)
     setAmount(amount)
     onAmountSet(amount)
   }
