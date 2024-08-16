@@ -85,8 +85,8 @@ const Examples: FC<HTMLAttributes<HTMLElement>> = ({ ...restProps }) => {
       icon: <ImgInputAddress />,
       text: (
         <>
-          Validate an address or hash. Also copy or open it in the block explorer for the chain your
-          wallet is connected to (defaults to mainnet)
+          Validate an address or hash. Copy or open it in the block explorer for the chain your
+          wallet is connected to (defaults to mainnet).
         </>
       ),
       title: 'Hash handling',
@@ -95,7 +95,19 @@ const Examples: FC<HTMLAttributes<HTMLElement>> = ({ ...restProps }) => {
       demo: <TokenDropdownDemo />,
       href: 'https://bootnodedev.github.io/dAppBooster/functions/sharedComponents_TokenDropdown.TokenDropdown.html',
       icon: <ImgTokenList />,
-      text: 'Dynamic token list dropdown',
+      text: (
+        <>
+          Allows you to search or select tokens from a list. Uses oure{' '}
+          <a
+            href="https://bootnodedev.github.io/dAppBooster/variables/sharedComponents_TokenSelect.TokenSelect.html"
+            rel="noreferrer"
+            target="_blank"
+          >
+            TokenSelect
+          </a>{' '}
+          component internally.
+        </>
+      ),
       title: 'Token dropdown',
     },
     {
@@ -109,7 +121,7 @@ const Examples: FC<HTMLAttributes<HTMLElement>> = ({ ...restProps }) => {
       demo: <SwitchNetworkDemo />,
       href: 'https://bootnodedev.github.io/dAppBooster/functions/sharedComponents_SwitchNetwork.SwitchNetwork.html',
       icon: <ImgSwitch />,
-      text: 'Add or switch networks',
+      text: 'Learn how to add or switch networks in supported wallets.',
       title: 'Add / switch network',
     },
 
@@ -117,14 +129,14 @@ const Examples: FC<HTMLAttributes<HTMLElement>> = ({ ...restProps }) => {
       demo: <SubgraphDemo />,
       href: 'https://github.com/BootNodeDev/dAppBooster#subgraphs',
       icon: <ImgSubgraph />,
-      text: 'Support for connecting with subgraphs',
-      title: 'Subgraph',
+      text: 'Connect to subgraphs and fetch data from the blockchain the easy way.',
+      title: 'Subgraphs',
     },
     {
       demo: <SubgraphStatusDemo />,
       href: 'https://github.com/BootNodeDev/dAppBooster#subgraphs',
       icon: <ImgSubgraphStatus />,
-      text: 'Subgraph syncing status',
+      text: 'Easily check subgraph syncing status.',
       title: 'Subgraph status',
     },
     {
