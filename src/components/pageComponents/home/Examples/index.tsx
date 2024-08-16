@@ -114,7 +114,19 @@ const Examples: FC<HTMLAttributes<HTMLElement>> = ({ ...restProps }) => {
       demo: <TokenInputDemo />,
       href: 'https://bootnodedev.github.io/dAppBooster/functions/sharedComponents_TokenInput.TokenInput.html',
       icon: <ImgTokenInput />,
-      text: 'Input with max, user balance, decimals',
+      text: (
+        <>
+          <a
+            href="https://bootnodedev.github.io/dAppBooster/variables/sharedComponents_TokenSelect.TokenSelect.html"
+            rel="noreferrer"
+            target="_blank"
+          >
+            Select a token
+          </a>{' '}
+          or specify one beforehand, enter a token amount, auto detect token decimals, user balance,
+          min and max boundaries, format numbers, max button.
+        </>
+      ),
       title: 'Token input',
     },
     {

@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react'
+import styled, { css } from 'styled-components'
 
+import { Item, breakpointMediaQuery } from 'db-ui-toolkit'
 import { arbitrum, mainnet, polygon, optimism } from 'viem/chains'
 
+import { OptionsButton } from '@/src/components/pageComponents/home/Examples/demos/OptionsButton'
+import { OptionsDropdown } from '@/src/components/pageComponents/home/Examples/demos/OptionsDropdown'
 import Arbitrum from '@/src/components/pageComponents/home/Examples/demos/assets/Arbitrum'
 import Eth from '@/src/components/pageComponents/home/Examples/demos/assets/Eth'
 import Optimism from '@/src/components/pageComponents/home/Examples/demos/assets/Optimism'
@@ -13,7 +17,25 @@ import { useTokenSearch } from '@/src/hooks/useTokenSearch'
 import { useWeb3Status } from '@/src/hooks/useWeb3Status'
 import { type Token } from '@/src/types/token'
 
-const TokenInputDemo = ({ singleToken }: { singleToken?: boolean }) => {
+const Wrapper = styled.div`
+  max-width: 100%;
+  padding-top: var(--base-common-padding);
+
+  ${breakpointMediaQuery(
+    'desktopStart',
+    css`
+      padding-top: calc(var(--base-common-padding) * 3);
+    `,
+  )}
+`
+
+type Options = 'single' | 'multi'
+
+/**
+ * This demo uses the TokenInput component to show how to use it in a single
+ * token or multi token mode.
+ */
+const TokenInputDemo = () => {
   const { isWalletConnected } = useWeb3Status()
   const [currentNetworkId, setCurrentNetworkId] = useState<number>()
   const [currentToken, setCurrentToken] = useState<Token | undefined>()
@@ -67,20 +89,56 @@ const TokenInputDemo = ({ singleToken }: { singleToken?: boolean }) => {
     error && console.log(error)
   }, [currentToken, amount, error])
 
+  const dropdownItems = [
+    { label: 'Single token', type: 'single' },
+    { label: 'Multi token', type: 'multi' },
+  ]
+  const [currentTokenInput, setCurrentTokenInput] = useState<Options>('single')
+
   return (
-    <TokenInput
-      currentNetworkId={currentNetworkId}
-      networks={networks}
-      onAmountSet={onAmountSet}
-      onError={onError}
-      onTokenSelect={onTokenSelect}
-      showAddTokenButton
-      showBalance={isWalletConnected}
-      showTopTokens
-      singleToken={singleToken}
-      title="You pay"
-      token={singleToken ? searchResult[0] : undefined}
-    />
+    <Wrapper>
+      <OptionsDropdown
+        button={
+          <OptionsButton>
+            {dropdownItems.find((item) => item.type === currentTokenInput)?.label}
+          </OptionsButton>
+        }
+        defaultActiveItem={0}
+        items={dropdownItems.map((item, index) => (
+          <Item key={index} onClick={() => setCurrentTokenInput(item.type as Options)}>
+            {item.label}
+          </Item>
+        ))}
+      />
+      {currentTokenInput === 'multi' && (
+        <TokenInput
+          currentNetworkId={currentNetworkId}
+          networks={networks}
+          onAmountSet={onAmountSet}
+          onError={onError}
+          onTokenSelect={onTokenSelect}
+          showAddTokenButton
+          showBalance={isWalletConnected}
+          showTopTokens
+          title="You pay"
+        />
+      )}
+      {currentTokenInput === 'single' && (
+        <TokenInput
+          currentNetworkId={currentNetworkId}
+          networks={networks}
+          onAmountSet={onAmountSet}
+          onError={onError}
+          onTokenSelect={onTokenSelect}
+          showAddTokenButton
+          showBalance={isWalletConnected}
+          showTopTokens
+          singleToken
+          title="You pay"
+          token={searchResult[0]}
+        />
+      )}
+    </Wrapper>
   )
 }
 
