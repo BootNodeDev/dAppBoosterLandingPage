@@ -1,3 +1,4 @@
+import { type FC } from 'react'
 import styled from 'styled-components'
 
 import { Toast } from 'db-ui-toolkit'
@@ -10,7 +11,7 @@ import { getExplorerLink } from '@/src/utils/getExplorerLink'
 const Wrapper = styled(Hash)`
   [data-theme='light'] & {
     --theme-hash-background-color: #fff;
-    --theme-hash-border-color: #e2e0e7;
+    --theme-hash-border-color: #c5c2cb;
     --theme-hash-color: #2e3048;
   }
 
@@ -27,12 +28,14 @@ const Wrapper = styled(Hash)`
   cursor: default;
   font-size: 1.6rem;
   height: 34px;
+  min-width: 0;
   padding: 0 calc(var(--base-common-padding) * 2);
 `
 
 interface Props {
   chain: Chain
-  hash: Address
+  hash: Address | undefined
+  truncatedHashLength?: number | 'disabled'
 }
 
 /**
@@ -41,7 +44,7 @@ interface Props {
  * Some styles were added. Also we show a toast when the copy button is clicked
  * to let the user know that something has happened.
  */
-const HashDemo = ({ chain, hash }: Props) => {
+const HashDemo: FC<Props> = ({ chain, hash, ...restProps }) => {
   const onCopy = (message: string) => {
     const timeDelay = 2500
 
@@ -53,14 +56,15 @@ const HashDemo = ({ chain, hash }: Props) => {
     })
   }
 
-  return (
+  return hash ? (
     <Wrapper
       explorerURL={getExplorerLink({ chain, hashOrAddress: hash })}
       hash={hash}
       onCopy={() => onCopy(hash)}
       showCopyButton
+      {...restProps}
     />
-  )
+  ) : null
 }
 
 export default HashDemo

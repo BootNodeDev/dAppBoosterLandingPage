@@ -1,10 +1,13 @@
 import { useState } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
-import { Textfield as BaseTextfield, Spinner } from 'db-ui-toolkit'
-import { mainnet } from 'viem/chains'
+import { Textfield as BaseTextfield, Spinner, breakpointMediaQuery } from 'db-ui-toolkit'
+import { type Address } from 'viem'
+import * as chains from 'viem/chains'
 
+import HashDemo from '@/src/components/pageComponents/home/Examples/demos/HashDemo'
 import HashInput from '@/src/components/sharedComponents/HashInput'
+import { useWeb3Status } from '@/src/hooks/useWeb3Status'
 import { DetectedHash } from '@/src/utils/hash'
 
 const AlertIcon = () => (
@@ -36,6 +39,13 @@ const IconOK = ({ ...restProps }) => (
 )
 
 const Wrapper = styled.div`
+  position: relative;
+  width: 100%;
+  display: grid;
+  row-gap: var(--base-gap);
+`
+
+const InputWrapper = styled.div`
   --base-horizontal-padding: var(--base-common-padding-xl);
   --base-textfield-padding: 0 var(--base-horizontal-padding);
   --base-textfield-border-radius: var(--base-border-radius);
@@ -123,41 +133,74 @@ const StatusMessage = styled.div`
   z-index: 5;
 `
 
+const HashExplorer = styled(HashDemo)`
+  font-size: 1.4rem;
+  width: 100%;
+
+  ${breakpointMediaQuery(
+    'tabletPortraitStart',
+    css`
+      position: absolute;
+      top: calc(100% + var(--base-gap));
+    `,
+  )}
+`
+
+/**
+ * This demo shows how to use the HashInput and Hash components.
+ *
+ * We use `HashInput` to validate an address or tx hash, and `Hash` to allow the
+ * user to copy it or open it in an block explorer.
+ */
 const HashInputDemo = ({ ...restProps }) => {
   const [searchResult, setSearchResult] = useState<DetectedHash | null>(null)
   const [loading, setLoading] = useState<boolean | undefined>()
   const notFound = searchResult && searchResult.type === null
   const found = searchResult && searchResult.type !== null
+  const { isWalletConnected, walletChainId } = useWeb3Status()
 
   const onLoading = (isLoading: boolean) => {
     setLoading(isLoading)
   }
 
+  const findChain = (chainId: number) => Object.values(chains).find((chain) => chain.id === chainId)
+
+  // mainnet is the default chain if not connected or the chain is not found
+  const currentChain =
+    isWalletConnected && walletChainId ? findChain(walletChainId) || chains.mainnet : chains.mainnet
+
   return (
     <Wrapper {...restProps}>
-      <HashInput
-        chain={mainnet}
-        onLoading={onLoading}
-        onSearch={setSearchResult}
-        renderInput={({ ...props }) => (
-          <Textfield
-            $status={notFound ? 'error' : undefined}
-            placeholder="Address / Txn Hash / ENS Name"
-            {...props}
-          />
+      <InputWrapper>
+        <HashInput
+          chain={currentChain}
+          onLoading={onLoading}
+          onSearch={setSearchResult}
+          renderInput={({ ...props }) => (
+            <Textfield
+              $status={notFound ? 'error' : undefined}
+              placeholder="Address / Tx Hash"
+              {...props}
+            />
+          )}
+        />
+        {loading && (
+          <SpinnerWrapper>
+            <Spinner height="25" width="25" />
+          </SpinnerWrapper>
         )}
+        {found && !loading && <OK />}
+        {notFound && (
+          <StatusMessage>
+            <AlertIcon /> <span>No results found</span>
+          </StatusMessage>
+        )}
+      </InputWrapper>
+      <HashExplorer
+        chain={currentChain}
+        hash={searchResult?.data as Address}
+        truncatedHashLength="disabled"
       />
-      {loading && (
-        <SpinnerWrapper>
-          <Spinner height="25" width="25" />
-        </SpinnerWrapper>
-      )}
-      {found && !loading && <OK />}
-      {notFound && (
-        <StatusMessage>
-          <AlertIcon /> <span>No results found</span>
-        </StatusMessage>
-      )}
     </Wrapper>
   )
 }

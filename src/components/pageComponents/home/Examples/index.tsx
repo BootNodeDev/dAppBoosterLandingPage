@@ -2,13 +2,10 @@ import { type FC, type HTMLAttributes } from 'react'
 import styled, { css } from 'styled-components'
 
 import { InnerContainer as Inner, ContainerPadding, breakpointMediaQuery } from 'db-ui-toolkit'
-import { mainnet } from 'viem/chains'
-import { useAccount } from 'wagmi'
 
 import { Props as ItemProps } from '@/src/components/pageComponents/home/Examples/Item'
 import List from '@/src/components/pageComponents/home/Examples/List'
 import ImgEns from '@/src/components/pageComponents/home/Examples/assets/Ens'
-import ImgHash from '@/src/components/pageComponents/home/Examples/assets/Hash'
 import ImgInputAddress from '@/src/components/pageComponents/home/Examples/assets/InputAddress'
 import ImgSign from '@/src/components/pageComponents/home/Examples/assets/Sign'
 import ImgSubgraph from '@/src/components/pageComponents/home/Examples/assets/Subgraph'
@@ -21,7 +18,6 @@ import ImgUserCheck from '@/src/components/pageComponents/home/Examples/assets/U
 import ImgWallet from '@/src/components/pageComponents/home/Examples/assets/Wallet'
 import ERC20ApproveAndTransferButtonDemo from '@/src/components/pageComponents/home/Examples/demos/ERC20ApproveAndTransferButtonDemo'
 import EnsNameDemo from '@/src/components/pageComponents/home/Examples/demos/EnsNameDemo'
-import HashDemo from '@/src/components/pageComponents/home/Examples/demos/HashDemo'
 import HashInputDemo from '@/src/components/pageComponents/home/Examples/demos/HashInputDemo'
 import SignMessageDemo from '@/src/components/pageComponents/home/Examples/demos/SignMessageDemo'
 import SubgraphDemo from '@/src/components/pageComponents/home/Examples/demos/SubgraphDemo'
@@ -63,7 +59,6 @@ const InnerContainer = styled(Inner)`
 `
 
 const Examples: FC<HTMLAttributes<HTMLElement>> = ({ ...restProps }) => {
-  const { address = '0x87885AaEEdED51C7e3858a782644F5d89759f245' } = useAccount()
   const items: ItemProps[] = [
     {
       demo: <ConnectWalletButtonDemo />,
@@ -79,7 +74,7 @@ const Examples: FC<HTMLAttributes<HTMLElement>> = ({ ...restProps }) => {
           >
             avatar
           </a>{' '}
-          and address
+          and address.
         </>
       ),
       title: 'Wallet connectivity',
@@ -88,8 +83,13 @@ const Examples: FC<HTMLAttributes<HTMLElement>> = ({ ...restProps }) => {
       demo: <HashInputDemo />,
       href: 'https://bootnodedev.github.io/dAppBooster/functions/sharedComponents_Hash.Hash.html',
       icon: <ImgInputAddress />,
-      text: 'Validate address, ENS or transaction hash',
-      title: 'Hash input',
+      text: (
+        <>
+          Validate an address or hash. Also copy or open it in the block explorer for the chain your
+          wallet is connected to (defaults to mainnet)
+        </>
+      ),
+      title: 'Hash handling',
     },
     {
       demo: <TokenDropdownDemo />,
@@ -112,13 +112,7 @@ const Examples: FC<HTMLAttributes<HTMLElement>> = ({ ...restProps }) => {
       text: 'Add or switch networks',
       title: 'Add / switch network',
     },
-    {
-      demo: <HashDemo chain={mainnet} hash={address} />,
-      href: 'https://bootnodedev.github.io/dAppBooster/functions/sharedComponents_Hash.Hash.html',
-      icon: <ImgHash />,
-      text: 'Copy, open in explorer',
-      title: 'Hash component',
-    },
+
     {
       demo: <SubgraphDemo />,
       href: 'https://github.com/BootNodeDev/dAppBooster#subgraphs',
@@ -137,7 +131,15 @@ const Examples: FC<HTMLAttributes<HTMLElement>> = ({ ...restProps }) => {
       demo: <EnsNameDemo />,
       href: 'https://github.com/BootNodeDev/dAppBooster/blob/86a7b001d4e48b41b3a463f844a83f632eae8c39/src/pageComponents/home/Examples/demos/EnsNameDemo.tsx#L63',
       icon: <ImgEns />,
-      text: 'Resolve ENS names',
+      text: (
+        <>
+          Resolve{' '}
+          <a href="https://ens.domains/" rel="noreferrer" target="_blank">
+            ENS
+          </a>{' '}
+          names
+        </>
+      ),
       title: 'ENS name',
     },
     {
