@@ -1,9 +1,11 @@
-import { type FC } from 'react'
+import { type FC, useState } from 'react'
 import styled, { css } from 'styled-components'
 
-import { SkeletonLoading, breakpointMediaQuery } from 'db-ui-toolkit'
+import { Item, SkeletonLoading, breakpointMediaQuery } from 'db-ui-toolkit'
 import { arbitrum, base, type Chain, optimism, polygon } from 'viem/chains'
 
+import { OptionsButton } from '@/src/components/pageComponents/home/Examples/demos/OptionsButton'
+import { OptionsDropdown } from '@/src/components/pageComponents/home/Examples/demos/OptionsDropdown'
 import { getNetworkIcon } from '@/src/components/pageComponents/home/Examples/demos/SubgraphDemo/List'
 import { useSubgraphIndexingStatus } from '@/src/hooks/useSubgraphIndexingStatus'
 import { withSuspenseAndRetry } from '@/src/utils/suspenseWrapper'
@@ -23,14 +25,14 @@ const Wrapper = styled.div`
 
   display: flex;
   flex-direction: column;
-  padding: 0 var(--base-common-padding);
+  padding: var(--base-common-padding) 0 0;
   row-gap: var(--base-gap-xl);
   width: 100%;
 
   ${breakpointMediaQuery(
     'tabletPortraitStart',
     css`
-      width: auto;
+      padding-top: calc(var(--base-common-padding) * 3);
     `,
   )}
 `
@@ -67,7 +69,9 @@ const Data = styled.div<{ $status: 'error' | 'ok' }>`
   font-weight: 400;
   grid-template-columns: var(--base-status-size) 1fr;
   line-height: 1.2;
+  max-width: 100%;
   white-space: nowrap;
+  width: fit-content;
 
   &::before {
     align-items: center;
@@ -85,7 +89,7 @@ const Data = styled.div<{ $status: 'error' | 'ok' }>`
   ${breakpointMediaQuery(
     'tabletPortraitStart',
     css`
-      grid-template-columns: var(--base-status-size) 1fr 10px 1fr;
+      grid-template-columns: var(--base-status-size) auto 10px auto;
     `,
   )}
 `
@@ -124,7 +128,7 @@ export const SkeletonLoadingItem = () => (
       minHeight: '55px',
       padding: '16px',
       rowGap: '16px',
-      width: '272px',
+      width: '100%',
     }}
   >
     <SkeletonLoading style={{ width: '40%', minHeight: '20px' }} />
@@ -172,12 +176,31 @@ const Aave = withSuspenseAndRetry(() => {
 const uniswapNetworks = [optimism, polygon, arbitrum]
 
 const List = ({ ...restProps }) => {
+  const [currentChain, setCurrentChain] = useState<Chain | undefined>(uniswapNetworks[0])
+  const dropdownItems = [...uniswapNetworks, base]
+
   return (
     <Wrapper {...restProps}>
-      {uniswapNetworks.map((chain) => (
-        <Uniswap chain={chain} key={chain.id} suspenseFallback={<SkeletonLoadingItem />} />
-      ))}
-      <Aave suspenseFallback={<SkeletonLoadingItem />} />
+      <OptionsDropdown
+        button={
+          <OptionsButton>
+            {dropdownItems.find((item) => item.name === currentChain?.name)?.name}
+          </OptionsButton>
+        }
+        defaultActiveItem={0}
+        items={dropdownItems.map((item, index) => (
+          <Item key={index} onClick={() => setCurrentChain(item)}>
+            {item.name}
+          </Item>
+        ))}
+      />
+      {uniswapNetworks.map(
+        (chain) =>
+          currentChain?.id === chain.id && (
+            <Uniswap chain={chain} key={chain.id} suspenseFallback={<SkeletonLoadingItem />} />
+          ),
+      )}
+      {currentChain?.id === base.id && <Aave suspenseFallback={<SkeletonLoadingItem />} />}
     </Wrapper>
   )
 }

@@ -148,7 +148,7 @@ const Examples: FC<HTMLAttributes<HTMLElement>> = ({ ...restProps }) => {
       demo: <SubgraphStatusDemo />,
       href: 'https://github.com/BootNodeDev/dAppBooster#subgraphs',
       icon: <ImgSubgraphStatus />,
-      text: 'Easily check subgraph syncing status.',
+      text: "Easily check a subgraph's syncing status.",
       title: 'Subgraph status',
     },
     {

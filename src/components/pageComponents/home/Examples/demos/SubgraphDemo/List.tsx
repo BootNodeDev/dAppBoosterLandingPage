@@ -267,11 +267,11 @@ const List = ({ ...restProps }) => {
       />
       {uniswapNetworks.map(
         (chain) =>
-          currentChain === chain && (
+          currentChain?.id === chain.id && (
             <Uniswap chain={chain} key={chain.id} suspenseFallback={<SkeletonLoadingItem />} />
           ),
       )}
-      {currentChain === base && <Aave suspenseFallback={<SkeletonLoadingItem />} />}
+      {currentChain?.id === base.id && <Aave suspenseFallback={<SkeletonLoadingItem />} />}
     </Wrapper>
   )
 }
