@@ -1,7 +1,7 @@
 import { useState, type ChangeEvent } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
-import { Spinner, Textfield } from 'db-ui-toolkit'
+import { Spinner, Textfield, breakpointMediaQuery } from 'db-ui-toolkit'
 import { useDebouncedCallback } from 'use-debounce'
 import { type Address } from 'viem'
 import { useEnsName } from 'wagmi'
@@ -39,6 +39,13 @@ const Wrapper = styled.div`
   padding: var(--base-common-padding-xl);
   row-gap: var(--base-gap);
   width: 100%;
+
+  ${breakpointMediaQuery(
+    'tabletPortraitStart',
+    css`
+      margin-top: calc(var(--base-common-padding) * 3);
+    `,
+  )}
 `
 
 const Title = styled.h3`
