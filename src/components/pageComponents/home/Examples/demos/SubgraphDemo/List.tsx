@@ -48,22 +48,15 @@ const Wrapper = styled.div`
 
   display: flex;
   flex-direction: column;
-  padding: var(--base-common-padding) var(--base-common-padding-xl) 0;
+  padding-top: var(--base-common-padding);
   row-gap: calc(var(--base-gap-xl) * 2);
   width: 100%;
 
   ${breakpointMediaQuery(
     'tabletPortraitStart',
     css`
-      padding: var(--base-common-padding-xl);
-      row-gap: calc(var(--base-gap-xl) * 3);
-    `,
-  )}
-
-  ${breakpointMediaQuery(
-    'desktopStart',
-    css`
       padding-top: calc(var(--base-common-padding) * 3);
+      row-gap: calc(var(--base-gap-xl) * 3);
     `,
   )}
 `
@@ -73,7 +66,14 @@ const Group = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: var(--base-gap-xl);
-  padding: var(--base-common-padding-xl);
+  padding: 0 var(--base-common-padding);
+
+  ${breakpointMediaQuery(
+    'desktopStart',
+    css`
+      padding: 0;
+    `,
+  )}
 `
 
 const Title = styled.h3`
@@ -169,6 +169,26 @@ export const getNetworkIcon = (chainName: string) => (
   </>
 )
 
+export const SkeletonLoadingItem = () => (
+  <SkeletonLoading
+    $animate={false}
+    style={{
+      display: 'flex',
+      flexDirection: 'column',
+      height: 'auto',
+      minHeight: '133px',
+      padding: '16px',
+      rowGap: '9px',
+      width: '100%',
+    }}
+  >
+    <SkeletonLoading style={{ width: '40%', height: '28px', paddingBottom: '8px' }} />
+    <SkeletonLoading style={{ width: '100%', height: '16px' }} />
+    <SkeletonLoading style={{ width: '100%', height: '16px' }} />
+    <SkeletonLoading style={{ width: '100%', height: '16px' }} />
+  </SkeletonLoading>
+)
+
 const Uniswap = withSuspenseAndRetry(({ chain }: { chain: Chain }) => {
   const { data } = useSuspenseQuery({
     queryKey: ['allUniswapPools', chain.id],
@@ -225,26 +245,6 @@ const Aave = withSuspenseAndRetry(() => {
 })
 
 const uniswapNetworks = [optimism, polygon, arbitrum]
-
-export const SkeletonLoadingItem = () => (
-  <SkeletonLoading
-    $animate={false}
-    style={{
-      display: 'flex',
-      flexDirection: 'column',
-      height: 'auto',
-      minHeight: '133px',
-      padding: '16px',
-      rowGap: '16px',
-      width: '100%',
-    }}
-  >
-    <SkeletonLoading style={{ width: '40%', height: '28px', paddingBottom: '8px' }} />
-    <SkeletonLoading style={{ width: '100%', height: '19.3px' }} />
-    <SkeletonLoading style={{ width: '100%', height: '19.3px' }} />
-    <SkeletonLoading style={{ width: '100%', height: '19.3px' }} />
-  </SkeletonLoading>
-)
 
 const List = ({ ...restProps }) => {
   const [currentChain, setCurrentChain] = useState<Chain | undefined>(uniswapNetworks[0])
