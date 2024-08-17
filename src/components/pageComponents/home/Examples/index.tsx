@@ -97,7 +97,7 @@ const Examples: FC<HTMLAttributes<HTMLElement>> = ({ ...restProps }) => {
       icon: <ImgTokenList />,
       text: (
         <>
-          Allows you to search or select tokens from a list. Uses oure{' '}
+          Allows you to search or select tokens from a list. Uses our{' '}
           <a
             href="https://bootnodedev.github.io/dAppBooster/variables/sharedComponents_TokenSelect.TokenSelect.html"
             rel="noreferrer"
