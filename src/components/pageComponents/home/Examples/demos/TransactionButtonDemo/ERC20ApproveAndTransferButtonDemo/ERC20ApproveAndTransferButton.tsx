@@ -1,5 +1,4 @@
 import { type FC } from 'react'
-import styled from 'styled-components'
 
 import { type Address, type TransactionReceipt, type Hash, erc20Abi } from 'viem'
 import * as chains from 'viem/chains'
@@ -12,14 +11,6 @@ import { useSuspenseReadErc20Allowance } from '@/src/hooks/generated'
 import { useWeb3StatusConnected, useWeb3Status } from '@/src/hooks/useWeb3Status'
 import { type Token } from '@/src/types/token'
 import { getExplorerLink } from '@/src/utils/getExplorerLink'
-
-const Button = styled(PrimaryButton).attrs({ as: TransactionButton })`
-  font-size: 1.6rem;
-  font-weight: 500;
-  height: 48px;
-  padding-left: calc(var(--base-common-padding) * 3);
-  padding-right: calc(var(--base-common-padding) * 3);
-`
 
 interface Props {
   amount: bigint
@@ -87,7 +78,8 @@ const ERC20ApproveAndTransferButton: FC<Props> = ({
 
   return isApprovalRequired ? (
     <Wrapper text={`Approve the use of ${token.symbol} with your wallet`} title="Approval required">
-      <Button
+      <PrimaryButton
+        as={TransactionButton}
         disabled={disabled}
         key="approve"
         labelSending={`Approving ${token.symbol}`}
@@ -95,7 +87,7 @@ const ERC20ApproveAndTransferButton: FC<Props> = ({
         transaction={handleApprove}
       >
         Approve
-      </Button>
+      </PrimaryButton>
     </Wrapper>
   ) : (
     <Wrapper
@@ -114,7 +106,8 @@ const ERC20ApproveAndTransferButton: FC<Props> = ({
       }
       title="Execute the transaction"
     >
-      <Button
+      <PrimaryButton
+        as={TransactionButton}
         disabled={disabled}
         key="send"
         labelSending={labelSending}
@@ -122,7 +115,7 @@ const ERC20ApproveAndTransferButton: FC<Props> = ({
         transaction={transaction}
       >
         {label}
-      </Button>
+      </PrimaryButton>
     </Wrapper>
   )
 }

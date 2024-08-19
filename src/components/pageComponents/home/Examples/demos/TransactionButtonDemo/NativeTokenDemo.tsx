@@ -12,14 +12,6 @@ import TransactionButton from '@/src/components/sharedComponents/TransactionButt
 import { withWalletStatusVerifier } from '@/src/components/sharedComponents/WalletStatusVerifier'
 import { useWeb3StatusConnected } from '@/src/hooks/useWeb3Status'
 
-const Button = styled(PrimaryButton).attrs({ as: TransactionButton })`
-  font-size: 1.6rem;
-  font-weight: 500;
-  height: 48px;
-  padding-left: calc(var(--base-common-padding) * 3);
-  padding-right: calc(var(--base-common-padding) * 3);
-`
-
 const GeneralMessage = styled(GeneralMessageBase)<{ status?: 'ok' | 'error' }>`
   ${({ status }) =>
     status === 'ok' &&
@@ -63,13 +55,14 @@ const NativeTokenDemo = withWalletStatusVerifier(
           text="Demo transaction that sends 0.1 Sepolia ETH from / to your wallet."
           title="Native token demo"
         >
-          <Button
+          <PrimaryButton
+            as={TransactionButton}
             labelSending="Sending 0.1 ETH..."
             onMined={handleOnMined}
             transaction={handleSendTransaction}
           >
             Send 0.1 Sepolia ETH
-          </Button>
+          </PrimaryButton>
         </Wrapper>
         <Dialog id="tx-dialog">
           <GeneralMessage

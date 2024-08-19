@@ -24,7 +24,6 @@ const GeneralMessage = styled(GeneralMessageBase)<{ status?: 'ok' | 'error' }>`
 `
 
 const Button = styled(PrimaryButton)`
-  margin: 0 auto;
   width: 100%;
 `
 
