@@ -130,7 +130,7 @@ const ERC20ApproveAndTransferButtonDemo = withWalletStatusVerifier(
       <>
         {balance < amount ? (
           <Wrapper
-            text={`Mint ${formattedAmount} Sepolia USDC to proceed`}
+            text={`Get ${formattedAmount} Sepolia USDC to proceed`}
             title={'Not enough USDC'}
           >
             <Button as={ExternalLink} href="https://staging.aave.com/faucet/">

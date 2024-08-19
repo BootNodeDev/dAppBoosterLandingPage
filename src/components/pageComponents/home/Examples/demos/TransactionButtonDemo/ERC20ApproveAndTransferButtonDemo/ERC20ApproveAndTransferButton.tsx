@@ -112,7 +112,7 @@ const ERC20ApproveAndTransferButton: FC<Props> = ({
           .
         </>
       }
-      title="Transaction required"
+      title="Execute the transaction"
     >
       <Button
         disabled={disabled}
