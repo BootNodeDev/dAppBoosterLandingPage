@@ -5,6 +5,7 @@ import { breakpointMediaQuery } from 'db-ui-toolkit'
 
 import BaseBadge from '@/src/components/pageComponents/home/Examples/Item/Badge'
 import DocumentationButton from '@/src/components/pageComponents/home/Examples/Item/DocumentationButton'
+import SourceCodeButton from '@/src/components/pageComponents/home/Examples/Item/SourceCodeButton'
 
 const Wrapper = styled.div`
   [data-theme='light'] & {
@@ -100,6 +101,13 @@ const Text = styled.p`
   )};
 `
 
+const Buttons = styled.div`
+  display: flex;
+  gap: var(--base-gap);
+
+  ${breakpointMediaQuery('tabletPortraitStart', css``)};
+`
+
 const Demo = styled.div`
   align-items: center;
   background-color: var(--theme-examples-list-background-color);
@@ -134,18 +142,22 @@ export interface Props extends HTMLAttributes<HTMLDivElement> {
   demo: ReactNode
   href?: string
   icon: ReactNode
+  sourceCodeHref?: string
   text: string | ReactNode
   title: string
 }
 
-const Item: FC<Props> = ({ demo, href, icon, text, title, ...restProps }) => {
+const Item: FC<Props> = ({ demo, href, icon, sourceCodeHref, text, title, ...restProps }) => {
   return (
     <Wrapper {...restProps}>
       <Info>
         <Icon>{icon}</Icon>
         <Title>{title}</Title>
         <Text>{text}</Text>
-        {href && <DocumentationButton as="a" href={href} target="_blank" />}
+        <Buttons>
+          {href && <DocumentationButton as="a" href={href} target="_blank" />}
+          {sourceCodeHref && <SourceCodeButton as="a" href={sourceCodeHref} target="_blank" />}
+        </Buttons>
       </Info>
       <Demo>
         <Badge />

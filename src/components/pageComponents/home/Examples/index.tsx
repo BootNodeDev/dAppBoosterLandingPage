@@ -81,6 +81,8 @@ const Examples: FC<HTMLAttributes<HTMLElement>> = ({ ...restProps }) => {
       demo: <HashHandlingDemo />,
       href: 'https://bootnodedev.github.io/dAppBooster/functions/sharedComponents_Hash.Hash.html',
       icon: <ImgInputAddress />,
+      sourceCodeHref:
+        'https://github.com/BootNodeDev/dAppBoosterLandingPage/blob/dac8165b48832fae2fda82ad5e334f972e187d10/src/components/pageComponents/home/Examples/demos/HashHandlingDemo.tsx#L155',
       text: (
         <>
           Validate an address or hash. Copy or open it in the block explorer for the chain your
@@ -93,6 +95,8 @@ const Examples: FC<HTMLAttributes<HTMLElement>> = ({ ...restProps }) => {
       demo: <TokenDropdownDemo />,
       href: 'https://bootnodedev.github.io/dAppBooster/functions/sharedComponents_TokenDropdown.TokenDropdown.html',
       icon: <ImgTokenList />,
+      sourceCodeHref:
+        'https://github.com/BootNodeDev/dAppBoosterLandingPage/blob/dac8165b48832fae2fda82ad5e334f972e187d10/src/components/pageComponents/home/Examples/demos/TokenDropdownDemo.tsx#L13',
       text: (
         <>
           Allows you to search or select tokens from a list. Uses our{' '}
@@ -110,6 +114,8 @@ const Examples: FC<HTMLAttributes<HTMLElement>> = ({ ...restProps }) => {
     },
     {
       demo: <TokenInputDemo />,
+      sourceCodeHref:
+        'https://github.com/BootNodeDev/dAppBoosterLandingPage/blob/dac8165b48832fae2fda82ad5e334f972e187d10/src/components/pageComponents/home/Examples/demos/TokenInputDemo.tsx#L38',
       href: 'https://bootnodedev.github.io/dAppBooster/functions/sharedComponents_TokenInput.TokenInput.html',
       icon: <ImgTokenInput />,
       text: (
@@ -129,6 +135,8 @@ const Examples: FC<HTMLAttributes<HTMLElement>> = ({ ...restProps }) => {
     },
     {
       demo: <SwitchNetworkDemo />,
+      sourceCodeHref:
+        'https://github.com/BootNodeDev/dAppBoosterLandingPage/blob/dac8165b48832fae2fda82ad5e334f972e187d10/src/components/pageComponents/home/Examples/demos/SwitchNetworkDemo.tsx#L11',
       href: 'https://bootnodedev.github.io/dAppBooster/functions/sharedComponents_SwitchNetwork.SwitchNetwork.html',
       icon: <ImgSwitch />,
       text: 'Learn how to add or switch networks in supported wallets.',
@@ -136,6 +144,8 @@ const Examples: FC<HTMLAttributes<HTMLElement>> = ({ ...restProps }) => {
     },
 
     {
+      sourceCodeHref:
+        'https://github.com/BootNodeDev/dAppBoosterLandingPage/blob/dac8165b48832fae2fda82ad5e334f972e187d10/src/components/pageComponents/home/Examples/demos/SubgraphDemo/List.tsx#L249',
       demo: <SubgraphDemo />,
       href: 'https://github.com/BootNodeDev/dAppBooster#subgraphs',
       icon: <ImgSubgraph />,
@@ -143,6 +153,8 @@ const Examples: FC<HTMLAttributes<HTMLElement>> = ({ ...restProps }) => {
       title: 'Subgraphs',
     },
     {
+      sourceCodeHref:
+        'https://github.com/BootNodeDev/dAppBoosterLandingPage/blob/dac8165b48832fae2fda82ad5e334f972e187d10/src/components/pageComponents/home/Examples/demos/SubgraphStatusDemo/List.tsx#L178',
       demo: <SubgraphStatusDemo />,
       href: 'https://github.com/BootNodeDev/dAppBooster#subgraphs',
       icon: <ImgSubgraphStatus />,
@@ -150,8 +162,10 @@ const Examples: FC<HTMLAttributes<HTMLElement>> = ({ ...restProps }) => {
       title: 'Subgraph status',
     },
     {
+      sourceCodeHref:
+        'https://github.com/BootNodeDev/dAppBoosterLandingPage/blob/dac8165b48832fae2fda82ad5e334f972e187d10/src/components/pageComponents/home/Examples/demos/EnsNameDemo.tsx#L101',
       demo: <EnsNameDemo />,
-      href: 'https://github.com/BootNodeDev/dAppBooster/blob/86a7b001d4e48b41b3a463f844a83f632eae8c39/src/pageComponents/home/Examples/demos/EnsNameDemo.tsx#L63',
+      href: 'https://github.com/BootNodeDev/dAppBooster/blob/86a7b001d4e48b41b3a463f844a83f632eae8c39/src/components/pageComponents/home/Examples/demos/EnsNameDemo.tsx#L63',
       icon: <ImgEns />,
       text: (
         <>
@@ -165,6 +179,8 @@ const Examples: FC<HTMLAttributes<HTMLElement>> = ({ ...restProps }) => {
       title: 'ENS name',
     },
     {
+      sourceCodeHref:
+        'https://github.com/BootNodeDev/dAppBoosterLandingPage/blob/dac8165b48832fae2fda82ad5e334f972e187d10/src/components/pageComponents/home/Examples/demos/TransactionButtonDemo/index.tsx#L29',
       demo: <TransactionButtonDemo />,
       href: 'https://bootnodedev.github.io/dAppBooster/functions/sharedComponents_TransactionButton.TransactionButton.html',
       icon: <ImgTransaction />,
@@ -177,6 +193,8 @@ const Examples: FC<HTMLAttributes<HTMLElement>> = ({ ...restProps }) => {
       title: 'Transaction button',
     },
     {
+      sourceCodeHref:
+        'https://github.com/BootNodeDev/dAppBoosterLandingPage/blob/dac8165b48832fae2fda82ad5e334f972e187d10/src/components/pageComponents/home/Examples/demos/SignMessageDemo.tsx#L37',
       demo: <SignMessageDemo />,
       href: 'https://bootnodedev.github.io/dAppBooster/functions/sharedComponents_SignButton.SignButton.html',
       icon: <ImgSign />,
