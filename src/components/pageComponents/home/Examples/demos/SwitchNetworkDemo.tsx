@@ -5,8 +5,11 @@ import Eth from '@/src/components/pageComponents/home/Examples/demos/assets/Eth'
 import Optimism from '@/src/components/pageComponents/home/Examples/demos/assets/Optimism'
 import Polygon from '@/src/components/pageComponents/home/Examples/demos/assets/Polygon'
 import SwitchNetwork, { type Networks } from '@/src/components/sharedComponents/SwitchNetwork'
+import { useWeb3Status } from '@/src/hooks/useWeb3Status'
+import { ConnectWalletButton } from '@/src/providers/Web3Provider'
 
 const SwitchNetworkDemo = () => {
+  const { isWalletConnected } = useWeb3Status()
   const networks: Networks = [
     {
       icon: <Eth />,
@@ -30,7 +33,11 @@ const SwitchNetworkDemo = () => {
     },
   ]
 
-  return <SwitchNetwork networks={networks} />
+  return isWalletConnected ? (
+    <SwitchNetwork networks={networks} />
+  ) : (
+    <ConnectWalletButton label="Connect to switch network" />
+  )
 }
 
 export default SwitchNetworkDemo
