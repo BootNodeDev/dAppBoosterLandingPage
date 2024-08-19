@@ -1,11 +1,14 @@
-import { useState, type ChangeEvent } from 'react'
+import { useEffect, useState, type ChangeEvent } from 'react'
 import styled, { css } from 'styled-components'
 
-import { Spinner, Textfield, breakpointMediaQuery } from 'db-ui-toolkit'
+import { Spinner, Textfield, breakpointMediaQuery, Item } from 'db-ui-toolkit'
 import { useDebouncedCallback } from 'use-debounce'
 import { type Address } from 'viem'
 import { useEnsName } from 'wagmi'
 import { mainnet } from 'wagmi/chains'
+
+import { OptionsButton } from '@/src/components/pageComponents/home/Examples/demos/OptionsButton'
+import { OptionsDropdown } from '@/src/components/pageComponents/home/Examples/demos/OptionsDropdown'
 
 const Wrapper = styled.div`
   [data-theme='light'] & {
@@ -67,6 +70,13 @@ const ENSName = styled.div`
   padding-top: var(--base-common-padding);
 `
 
+const ButtonText = styled.span`
+  display: block;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`
+
 const EnsNameSearch = ({ address }: { address?: Address }) => {
   const { data, error, status } = useEnsName({
     address: address,
@@ -104,12 +114,44 @@ const EnsNameDemo = () => {
     debouncedSearch(value)
   }
 
+  const dropdownItems = [
+    '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045',
+    '0xaed56A64169A1eD7fFD83619A211b55a13f9F974',
+    '0x14536667Cd30e52C0b458BaACcB9faDA7046E056',
+    '0x8BCBd56588d77cd06C7930c09aB55ca7EF09b395',
+  ]
+  const [currentItem, setCurrentItem] = useState<string | undefined>()
+
+  useEffect(() => {
+    debouncedSearch(value as Address)
+  }, [debouncedSearch, value])
+
   return (
     <Wrapper>
+      <OptionsDropdown
+        button={
+          <OptionsButton>
+            <ButtonText>
+              {dropdownItems.find((item) => item === currentItem) || 'Select an address'}
+            </ButtonText>
+          </OptionsButton>
+        }
+        items={dropdownItems.map((item, index) => (
+          <Item
+            key={index}
+            onClick={() => {
+              setCurrentItem(item)
+              setValue(item as Address)
+            }}
+          >
+            {item}
+          </Item>
+        ))}
+      />
       <Title>Find ENS name</Title>
       <Textfield
         onChange={onChange}
-        placeholder="Enter an address"
+        placeholder="Enter an address or select one from the dropdown"
         type="search"
         value={value || ''}
       />

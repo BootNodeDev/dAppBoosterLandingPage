@@ -161,7 +161,7 @@ const Examples: FC<HTMLAttributes<HTMLElement>> = ({ ...restProps }) => {
           <a href="https://ens.domains/" rel="noreferrer" target="_blank">
             ENS
           </a>{' '}
-          names
+          names to their corresponding addresses.
         </>
       ),
       title: 'ENS name',
