@@ -6,15 +6,11 @@ import { type Hash, type TransactionReceipt, parseEther } from 'viem'
 import { sepolia } from 'viem/chains'
 import { useSendTransaction } from 'wagmi'
 
+import Wrapper from '@/src/components/pageComponents/home/Examples/demos/TransactionButtonDemo/Wrapper'
 import { PrimaryButton } from '@/src/components/sharedComponents/Buttons'
 import TransactionButton from '@/src/components/sharedComponents/TransactionButton'
 import { withWalletStatusVerifier } from '@/src/components/sharedComponents/WalletStatusVerifier'
 import { useWeb3StatusConnected } from '@/src/hooks/useWeb3Status'
-
-const Wrapper = styled.div`
-  display: grid;
-  row-gap: var(--base-gap-xl);
-`
 
 const Button = styled(PrimaryButton).attrs({ as: TransactionButton })`
   font-size: 1.6rem;
@@ -63,13 +59,16 @@ const NativeTokenDemo = withWalletStatusVerifier(
 
     return (
       <>
-        <Wrapper>
+        <Wrapper
+          text="Demo transaction that sends 0.1 Sepolia ETH from / to your wallet."
+          title="Native token demo"
+        >
           <Button
             labelSending="Sending 0.1 ETH..."
             onMined={handleOnMined}
             transaction={handleSendTransaction}
           >
-            Send 0.1 ETH
+            Send 0.1 Sepolia ETH
           </Button>
         </Wrapper>
         <Dialog id="tx-dialog">
