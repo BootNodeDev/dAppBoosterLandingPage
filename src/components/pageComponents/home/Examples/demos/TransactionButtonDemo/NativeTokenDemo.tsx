@@ -2,9 +2,9 @@ import { useState, type ReactElement } from 'react'
 import styled, { css } from 'styled-components'
 
 import { useDialog, GeneralMessage as GeneralMessageBase } from 'db-ui-toolkit'
-import { type Hash, type TransactionReceipt, erc20Abi, parseEther } from 'viem'
+import { type Hash, type TransactionReceipt, parseEther } from 'viem'
 import { sepolia } from 'viem/chains'
-import { useSendTransaction, useWriteContract } from 'wagmi'
+import { useSendTransaction } from 'wagmi'
 
 import { PrimaryButton } from '@/src/components/sharedComponents/Buttons'
 import TransactionButton from '@/src/components/sharedComponents/TransactionButton'
@@ -32,12 +32,16 @@ const GeneralMessage = styled(GeneralMessageBase)<{ status?: 'ok' | 'error' }>`
     `}
 `
 
-const TransactionButtonDemo = withWalletStatusVerifier(
+/**
+ * This demo shows how to send a native token transaction.
+ *
+ * Works only on Sepolia chain.
+ */
+const NativeTokenDemo = withWalletStatusVerifier(
   () => {
     const { Dialog, close, open } = useDialog()
     const { address } = useWeb3StatusConnected()
     const { sendTransactionAsync } = useSendTransaction()
-    const { writeContractAsync } = useWriteContract()
     const [minedMessage, setMinedMessage] = useState<string | ReactElement>()
 
     const handleOnMined = (receipt: TransactionReceipt) => {
@@ -57,26 +61,9 @@ const TransactionButtonDemo = withWalletStatusVerifier(
       })
     }
 
-    const handleWriteContract = (): Promise<Hash> => {
-      // Send ERC20 token [USDC]
-      return writeContractAsync({
-        abi: erc20Abi,
-        address: '0x94a9d9ac8a22534e3faca9f4e7f2e2cf85d5e4c8', // USDC
-        functionName: 'transfer',
-        args: [address, 100000000n], // 100 USDC
-      })
-    }
-
     return (
       <>
         <Wrapper>
-          <Button
-            labelSending="Sending 100 USDC..."
-            onMined={handleOnMined}
-            transaction={handleWriteContract}
-          >
-            Send 100 USDC
-          </Button>
           <Button
             labelSending="Sending 0.1 ETH..."
             onMined={handleOnMined}
@@ -110,4 +97,4 @@ const TransactionButtonDemo = withWalletStatusVerifier(
   },
 )
 
-export default TransactionButtonDemo
+export default NativeTokenDemo

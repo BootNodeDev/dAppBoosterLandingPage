@@ -5,7 +5,7 @@ import { type Address, formatUnits } from 'viem'
 import { sepolia } from 'viem/chains'
 import { useWriteContract } from 'wagmi'
 
-import ERC20ApproveAndTransferButton from '@/src/components/pageComponents/home/Examples/demos/ERC20ApproveAndTransferButtonDemo/ERC20ApproveAndTransferButton'
+import ERC20ApproveAndTransferButton from '@/src/components/pageComponents/home/Examples/demos/TransactionButtonDemo/ERC20ApproveAndTransferButtonDemo/ERC20ApproveAndTransferButton'
 import { PrimaryButton } from '@/src/components/sharedComponents/Buttons'
 import { withWalletStatusVerifier } from '@/src/components/sharedComponents/WalletStatusVerifier'
 import { useSuspenseReadErc20BalanceOf } from '@/src/hooks/generated'
@@ -63,7 +63,12 @@ const ABIExample = [
   },
 ] as const
 
-const ApproveAndSendDemo = withWalletStatusVerifier(
+/**
+ * This demo shows how to approve and send an ERC20 token transaction using the `TransactionButton` component.
+ *
+ * Works only on Sepolia chain.
+ */
+const ERC20ApproveAndTransferButtonDemo = withWalletStatusVerifier(
   withSuspense(() => {
     const { Dialog, close, open } = useDialog()
     const { address } = useWeb3StatusConnected()
@@ -128,4 +133,4 @@ const ApproveAndSendDemo = withWalletStatusVerifier(
   { chainId: sepolia.id }, // this DEMO component only works on sepolia chain
 )
 
-export default ApproveAndSendDemo
+export default ERC20ApproveAndTransferButtonDemo

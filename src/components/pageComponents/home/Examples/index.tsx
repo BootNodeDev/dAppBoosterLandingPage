@@ -14,9 +14,7 @@ import ImgSwitch from '@/src/components/pageComponents/home/Examples/assets/Swit
 import ImgTokenInput from '@/src/components/pageComponents/home/Examples/assets/TokenInput'
 import ImgTokenList from '@/src/components/pageComponents/home/Examples/assets/TokenList'
 import ImgTransaction from '@/src/components/pageComponents/home/Examples/assets/Transaction'
-import ImgUserCheck from '@/src/components/pageComponents/home/Examples/assets/UserCheck'
 import ImgWallet from '@/src/components/pageComponents/home/Examples/assets/Wallet'
-import ERC20ApproveAndTransferButtonDemo from '@/src/components/pageComponents/home/Examples/demos/ERC20ApproveAndTransferButtonDemo'
 import EnsNameDemo from '@/src/components/pageComponents/home/Examples/demos/EnsNameDemo'
 import HashHandlingDemo from '@/src/components/pageComponents/home/Examples/demos/HashHandlingDemo'
 import SignMessageDemo from '@/src/components/pageComponents/home/Examples/demos/SignMessageDemo'
@@ -170,15 +168,13 @@ const Examples: FC<HTMLAttributes<HTMLElement>> = ({ ...restProps }) => {
       demo: <TransactionButtonDemo />,
       href: 'https://bootnodedev.github.io/dAppBooster/functions/sharedComponents_TransactionButton.TransactionButton.html',
       icon: <ImgTransaction />,
-      text: 'Send tokens from / to your address',
+      text: (
+        <>
+          Transfer native cryptocurrency to your own address, or check ERC20 allowance, approve
+          ERC20 use, and execute a demo transaction.
+        </>
+      ),
       title: 'Tx button',
-    },
-    {
-      demo: <ERC20ApproveAndTransferButtonDemo />,
-      href: 'https://github.com/BootNodeDev/dAppBooster/blob/86a7b001d4e48b41b3a463f844a83f632eae8c39/src/pageComponents/home/Examples/demos/ERC20ApproveAndTransferButtonDemo/ERC20ApproveAndTransferButton.tsx#L33',
-      icon: <ImgUserCheck />,
-      text: 'Checks allowance and combines the approval and transaction buttons into one component',
-      title: 'ERC20 approve and transfer',
     },
     {
       demo: <SignMessageDemo />,
