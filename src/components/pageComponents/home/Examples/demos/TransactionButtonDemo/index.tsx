@@ -9,8 +9,12 @@ import ERC20ApproveAndTransferButtonDemo from '@/src/components/pageComponents/h
 import NativeTokenDemo from '@/src/components/pageComponents/home/Examples/demos/TransactionButtonDemo/NativeTokenDemo'
 
 const Wrapper = styled.div`
-  max-width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding-top: var(--base-common-padding);
+  width: 100%;
 
   ${breakpointMediaQuery(
     'desktopStart',

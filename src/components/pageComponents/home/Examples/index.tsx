@@ -174,7 +174,7 @@ const Examples: FC<HTMLAttributes<HTMLElement>> = ({ ...restProps }) => {
           ERC20 use, and execute a demo transaction.
         </>
       ),
-      title: 'Tx button',
+      title: 'Transaction button',
     },
     {
       demo: <SignMessageDemo />,
