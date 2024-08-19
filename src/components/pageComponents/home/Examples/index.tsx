@@ -180,7 +180,7 @@ const Examples: FC<HTMLAttributes<HTMLElement>> = ({ ...restProps }) => {
       demo: <SignMessageDemo />,
       href: 'https://bootnodedev.github.io/dAppBooster/functions/sharedComponents_SignButton.SignButton.html',
       icon: <ImgSign />,
-      text: 'Sign a message and get the signature',
+      text: 'Sign a message with your wallet and get the signature on a dialog.',
       title: 'Sign button',
     },
   ]
