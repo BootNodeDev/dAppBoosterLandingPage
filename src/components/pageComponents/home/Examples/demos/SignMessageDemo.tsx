@@ -69,11 +69,7 @@ const SignMessageDemo = () => {
       )}
     </>
   )
-  const dialogButton = (
-    <PrimaryButton onClick={onClose}>
-      {state.signature ? 'Close' : state.error ? 'Try again!' : ''}
-    </PrimaryButton>
-  )
+  const dialogButton = <PrimaryButton onClick={onClose}>Close</PrimaryButton>
 
   return (
     <>
