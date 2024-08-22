@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import styled, { css } from 'styled-components'
 
-import { useDialog, GeneralMessage as GeneralMessageBase } from 'db-ui-toolkit'
+import { Modal, useModal } from '@faceless-ui/modal'
+import { GeneralMessage as GeneralMessageBase } from 'db-ui-toolkit'
 
 import { PrimaryButton } from '@/src/components/sharedComponents/Buttons'
 import SignButtonBase from '@/src/components/sharedComponents/SignButton'
@@ -42,16 +43,16 @@ const SignMessageDemo = () => {
     error: null,
     signature: null,
   })
-  const { Dialog, close, open } = useDialog()
+  const { closeModal, isModalOpen, openModal } = useModal()
 
   useEffect(() => {
     if (state.signature || state.error) {
-      open('sign-message')
+      openModal('sign-message')
     }
-  }, [state.signature, state.error, open])
+  }, [state.signature, state.error, openModal])
 
   const onClose = () => {
-    close('sign-message')
+    closeModal('sign-message')
     setState({ error: null, signature: null })
   }
 
@@ -78,14 +79,16 @@ const SignMessageDemo = () => {
         onError={(error) => setState({ error, signature: null })}
         onSign={(signature) => setState({ error: null, signature })}
       />
-      <Dialog id="sign-message" onClose={onClose}>
-        <GeneralMessage
-          actionButton={dialogButton}
-          message={dialogMessage}
-          status={state.error ? 'error' : 'ok'}
-          title={dialogTitle}
-        />
-      </Dialog>
+      <Modal slug="sign-message">
+        {isModalOpen('sign-message') && (
+          <GeneralMessage
+            actionButton={dialogButton}
+            message={dialogMessage}
+            status={state.error ? 'error' : 'ok'}
+            title={dialogTitle}
+          />
+        )}
+      </Modal>
     </>
   )
 }

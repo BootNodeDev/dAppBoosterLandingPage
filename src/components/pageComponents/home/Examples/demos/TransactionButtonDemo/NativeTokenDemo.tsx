@@ -1,7 +1,8 @@
 import { useState, type ReactElement } from 'react'
 import styled, { css } from 'styled-components'
 
-import { useDialog, GeneralMessage as GeneralMessageBase } from 'db-ui-toolkit'
+import { Modal, useModal } from '@faceless-ui/modal'
+import { GeneralMessage as GeneralMessageBase } from 'db-ui-toolkit'
 import { type Hash, type TransactionReceipt, parseEther } from 'viem'
 import { sepolia } from 'viem/chains'
 import { useSendTransaction } from 'wagmi'
@@ -27,7 +28,7 @@ const GeneralMessage = styled(GeneralMessageBase)<{ status?: 'ok' | 'error' }>`
  */
 const NativeTokenDemo = withWalletStatusVerifier(
   () => {
-    const { Dialog, close, open } = useDialog()
+    const { closeModal, openModal } = useModal()
     const { address } = useWeb3StatusConnected()
     const { sendTransactionAsync } = useSendTransaction()
     const [minedMessage, setMinedMessage] = useState<string | ReactElement>()
@@ -38,7 +39,7 @@ const NativeTokenDemo = withWalletStatusVerifier(
           <b>Hash:</b> <span>{receipt.transactionHash}</span>
         </>,
       )
-      open('tx-dialog')
+      openModal('tx-dialog')
     }
 
     const handleSendTransaction = (): Promise<Hash> => {
@@ -64,12 +65,12 @@ const NativeTokenDemo = withWalletStatusVerifier(
             Send 0.1 Sepolia ETH
           </PrimaryButton>
         </Wrapper>
-        <Dialog id="tx-dialog">
+        <Modal slug="tx-dialog">
           <GeneralMessage
             actionButton={
               <PrimaryButton
                 onClick={() => {
-                  close('tx-dialog')
+                  closeModal('tx-dialog')
                   setMinedMessage('')
                 }}
               >
@@ -80,7 +81,7 @@ const NativeTokenDemo = withWalletStatusVerifier(
             status={'ok'}
             title={'Transaction completed!'}
           />
-        </Dialog>
+        </Modal>
       </>
     )
   },
