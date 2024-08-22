@@ -72,7 +72,7 @@ const ENSName = styled.div`
 
 const ButtonText = styled.span`
   display: block;
-  max-width: 100px;
+  max-width: 115px;
   overflow: hidden;
   text-overflow: ellipsis;
 `
