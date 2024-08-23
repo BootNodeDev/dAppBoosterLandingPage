@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
 
-import { ExternalLink, useDialog, GeneralMessage as GeneralMessageBase } from 'db-ui-toolkit'
+import { Modal, useModal } from '@faceless-ui/modal'
+import { ExternalLink, GeneralMessage as GeneralMessageBase } from 'db-ui-toolkit'
 import { type Address, formatUnits } from 'viem'
 import { sepolia } from 'viem/chains'
 import { useWriteContract } from 'wagmi'
@@ -98,7 +99,7 @@ const ABIExample = [
  */
 const ERC20ApproveAndTransferButtonDemo = withWalletStatusVerifier(
   withSuspense(() => {
-    const { Dialog, close, open } = useDialog()
+    const { closeModal, openModal } = useModal()
     const { address } = useWeb3StatusConnected()
     const { writeContractAsync } = useWriteContract()
 
@@ -141,22 +142,24 @@ const ERC20ApproveAndTransferButtonDemo = withWalletStatusVerifier(
             amount={amount}
             label={`Supply ${formattedAmount} USDC`}
             labelSending="Sending..."
-            onSuccess={() => open('approve-and-transfer')}
+            onSuccess={() => openModal('approve-and-transfer')}
             spender={spender}
             token={tokenUSDC_sepolia}
             transaction={handleTransaction}
           />
         )}
-        <Dialog id="approve-and-transfer">
+        <Modal slug="approve-and-transfer">
           <GeneralMessage
             actionButton={
-              <PrimaryButton onClick={() => close('approve-and-transfer')}>Close</PrimaryButton>
+              <PrimaryButton onClick={() => closeModal('approve-and-transfer')}>
+                Close
+              </PrimaryButton>
             }
             message={'Approve and supply completed! 🎉'}
             status={'ok'}
             title={'Success'}
           />
-        </Dialog>
+        </Modal>
       </>
     )
   }),

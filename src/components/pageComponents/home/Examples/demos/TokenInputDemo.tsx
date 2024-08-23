@@ -42,7 +42,7 @@ const TokenInputDemo = () => {
   const [amount, setAmount] = useState<string | undefined>()
   const [error, setError] = useState<string | undefined>()
   const { tokensByChainId } = useTokenLists()
-  const { searchResult } = useTokenSearch(tokensByChainId[1], [], 'WETH')
+  const { searchResult } = useTokenSearch({ tokens: tokensByChainId[1], defaultSearchTerm: 'WETH' })
 
   const networks: Networks = [
     {

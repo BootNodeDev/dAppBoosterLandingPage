@@ -54,36 +54,38 @@ export const TopRow = styled.div.attrs({ className: 'tokenInputTopRow' })`
 export const Textfield = styled(BaseTextfield).attrs({
   className: 'tokenInputTextfield',
 })`
-  /* Texfield */
-  --theme-textfield-background-color: var(--theme-token-input-textfield-background-color, #fff);
-  --theme-textfield-background-color-active: var(
-    --theme-token-input-textfield-background-color-active,
-    rgb(0 0 0 / 2%)
-  );
-  --theme-textfield-border-color: var(--theme-token-input-textfield-border-color, #e2e0e7);
-  --theme-textfield-border-color-active: var(
-    --theme-token-input-textfield-border-color-active,
-    #e2e0e7
-  );
-  --theme-textfield-color: var(--theme-token-input-textfield-color, #2e3048);
-  --theme-textfield-color-active: var(--theme-token-input-textfield-color-active, #2e3048);
-  --theme-textfield-placeholder-color: var(
-    --theme-token-input-textfield-placeholder-color,
-    rgb(22 29 26 / 60%)
-  );
+  && {
+    /* Texfield */
+    --theme-textfield-background-color: var(--theme-token-input-textfield-background-color, #fff);
+    --theme-textfield-background-color-active: var(
+      --theme-token-input-textfield-background-color-active,
+      rgb(0 0 0 / 2%)
+    );
+    --theme-textfield-border-color: var(--theme-token-input-textfield-border-color, #e2e0e7);
+    --theme-textfield-border-color-active: var(
+      --theme-token-input-textfield-border-color-active,
+      #e2e0e7
+    );
+    --theme-textfield-color: var(--theme-token-input-textfield-color, #2e3048);
+    --theme-textfield-color-active: var(--theme-token-input-textfield-color-active, #2e3048);
+    --theme-textfield-placeholder-color: var(
+      --theme-token-input-textfield-placeholder-color,
+      rgb(22 29 26 / 60%)
+    );
 
-  font-size: 2.4rem;
-  height: auto;
-  min-width: 0;
-  padding: var(--base-token-input-texfield-padding, var(--base-common-padding));
+    font-size: 2.4rem;
+    height: auto;
+    min-width: 0;
+    padding: var(--base-token-input-texfield-padding, var(--base-common-padding));
 
-  ${breakpointMediaQuery(
-    'tabletPortraitStart',
-    css`
-      font-size: 3.2rem;
-      padding: var(--base-token-input-texfield-padding, 0 var(--base-common-padding-xl));
-    `,
-  )}
+    ${breakpointMediaQuery(
+      'tabletPortraitStart',
+      css`
+        font-size: 3.2rem;
+        padding: var(--base-token-input-texfield-padding, 0 var(--base-common-padding-xl));
+      `,
+    )}
+  }
 `
 
 export const ChevronDown = styled(BaseChevronDown)`
