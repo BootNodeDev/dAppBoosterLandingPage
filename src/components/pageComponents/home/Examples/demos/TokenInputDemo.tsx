@@ -110,7 +110,8 @@ const TokenInputDemo = () => {
           </Item>
         ))}
       />
-      {currentTokenInput === 'multi' && (
+      {/* TODO: Fix */}
+      {/* {currentTokenInput === 'multi' && (
         <TokenInput
           currentNetworkId={currentNetworkId}
           networks={networks}
@@ -137,7 +138,7 @@ const TokenInputDemo = () => {
           title="You pay"
           token={searchResult[0]}
         />
-      )}
+      )} */}
     </Wrapper>
   )
 }
