@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import styled, { css } from 'styled-components'
 
 import { Item, breakpointMediaQuery } from 'db-ui-toolkit'
@@ -16,7 +16,6 @@ import { type Networks } from '@/src/components/sharedComponents/TokenSelect'
 import { useTokenLists } from '@/src/hooks/useTokenLists'
 import { useTokenSearch } from '@/src/hooks/useTokenSearch'
 import { useWeb3Status } from '@/src/hooks/useWeb3Status'
-import { type Token } from '@/src/types/token'
 
 const Wrapper = styled.div`
   max-width: 100%;
