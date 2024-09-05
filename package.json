@@ -10,7 +10,8 @@
     "generateDocs": "typedoc",
     "lint:fix": "eslint --fix .",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "postinstall": "pnpm wagmi-generate",
+    "postinstall": "pnpm wagmi-generate && pnpm subgraph-generate",
+    "subgraph-generate": "pnpm graphql-codegen --config ./src/subgraphs/codegen.ts",
     "prepare": "husky",
     "prettier:fix": "prettier --write --ignore-unknown .",
     "preview": "vite preview",
@@ -99,3 +100,4 @@
     "vitest": "^1.6.0"
   }
 }
+
