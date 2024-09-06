@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import styled, { css } from 'styled-components'
 
 import { Item, breakpointMediaQuery } from 'db-ui-toolkit'
@@ -11,11 +11,11 @@ import Eth from '@/src/components/pageComponents/home/Examples/demos/assets/Eth'
 import Optimism from '@/src/components/pageComponents/home/Examples/demos/assets/Optimism'
 import Polygon from '@/src/components/pageComponents/home/Examples/demos/assets/Polygon'
 import TokenInput from '@/src/components/sharedComponents/TokenInput'
+import { useTokenInput } from '@/src/components/sharedComponents/TokenInput/useTokenInput'
 import { type Networks } from '@/src/components/sharedComponents/TokenSelect'
 import { useTokenLists } from '@/src/hooks/useTokenLists'
 import { useTokenSearch } from '@/src/hooks/useTokenSearch'
 import { useWeb3Status } from '@/src/hooks/useWeb3Status'
-import { type Token } from '@/src/types/token'
 
 const Wrapper = styled.div`
   max-width: 100%;
@@ -38,11 +38,10 @@ type Options = 'single' | 'multi'
 const TokenInputDemo = () => {
   const { isWalletConnected } = useWeb3Status()
   const [currentNetworkId, setCurrentNetworkId] = useState<number>()
-  const [currentToken, setCurrentToken] = useState<Token | undefined>()
-  const [amount, setAmount] = useState<string | undefined>()
-  const [error, setError] = useState<string | undefined>()
   const { tokensByChainId } = useTokenLists()
   const { searchResult } = useTokenSearch({ tokens: tokensByChainId[1], defaultSearchTerm: 'WETH' })
+  const tokenInputMulti = useTokenInput()
+  const tokenInputSingle = useTokenInput(searchResult[0])
 
   const networks: Networks = [
     {
@@ -71,23 +70,11 @@ const TokenInputDemo = () => {
     },
   ]
 
-  const onTokenSelect = (token: Token | undefined) => {
-    setCurrentToken(token)
-  }
-
-  const onAmountSet = (amount?: string) => {
-    setAmount(amount)
-  }
-
-  const onError = (error?: string) => {
-    setError(error)
-  }
-
-  useEffect(() => {
-    currentToken && console.log(currentToken)
-    amount && console.log(amount)
-    error && console.log(error)
-  }, [currentToken, amount, error])
+  // useEffect(() => {
+  //   currentToken && console.log(currentToken)
+  //   amount && console.log(amount)
+  //   error && console.log(error)
+  // }, [currentToken, amount, error])
 
   const dropdownItems = [
     { label: 'Single token', type: 'single' },
@@ -110,32 +97,28 @@ const TokenInputDemo = () => {
           </Item>
         ))}
       />
+
       {currentTokenInput === 'multi' && (
         <TokenInput
           currentNetworkId={currentNetworkId}
           networks={networks}
-          onAmountSet={onAmountSet}
-          onError={onError}
-          onTokenSelect={onTokenSelect}
           showAddTokenButton
           showBalance={isWalletConnected}
           showTopTokens
           title="You pay"
+          tokenInput={tokenInputMulti}
         />
       )}
       {currentTokenInput === 'single' && (
         <TokenInput
           currentNetworkId={currentNetworkId}
           networks={networks}
-          onAmountSet={onAmountSet}
-          onError={onError}
-          onTokenSelect={onTokenSelect}
           showAddTokenButton
           showBalance={isWalletConnected}
           showTopTokens
           singleToken
           title="You pay"
-          token={searchResult[0]}
+          tokenInput={tokenInputSingle}
         />
       )}
     </Wrapper>

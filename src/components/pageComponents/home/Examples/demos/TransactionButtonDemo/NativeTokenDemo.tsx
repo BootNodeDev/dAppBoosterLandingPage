@@ -49,6 +49,7 @@ const NativeTokenDemo = withWalletStatusVerifier(
         value: parseEther('0.1'),
       })
     }
+    handleSendTransaction.methodId = 'sendTransaction'
 
     return (
       <>

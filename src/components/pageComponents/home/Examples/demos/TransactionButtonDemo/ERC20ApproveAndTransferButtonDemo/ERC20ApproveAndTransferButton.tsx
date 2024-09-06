@@ -69,6 +69,7 @@ const ERC20ApproveAndTransferButton: FC<Props> = ({
       args: [spender, amount],
     })
   }
+  handleApprove.methodId = 'Approve USDC'
 
   const findChain = (chainId: number) => Object.values(chains).find((chain) => chain.id === chainId)
 
