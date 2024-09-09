@@ -1,10 +1,10 @@
 import { type FC, type HTMLAttributes } from 'react'
 import styled from 'styled-components'
 
-import Github from '@/src/components/sharedComponents/Footer/Socials/assets/Github'
-import LinkedIn from '@/src/components/sharedComponents/Footer/Socials/assets/LinkedIn'
-import Telegram from '@/src/components/sharedComponents/Footer/Socials/assets/Telegram'
-import Twitter from '@/src/components/sharedComponents/Footer/Socials/assets/Twitter'
+import Github from '@/src/components/sharedComponents/ui/Footer/Socials/assets/Github'
+import LinkedIn from '@/src/components/sharedComponents/ui/Footer/Socials/assets/LinkedIn'
+import Telegram from '@/src/components/sharedComponents/ui/Footer/Socials/assets/Telegram'
+import Twitter from '@/src/components/sharedComponents/ui/Footer/Socials/assets/Twitter'
 
 const Wrapper = styled.div`
   align-items: center;

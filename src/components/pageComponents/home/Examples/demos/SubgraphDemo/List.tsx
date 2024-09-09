@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import styled, { css } from 'styled-components'
 
-import { useSuspenseQuery } from '@tanstack/react-query'
 import {
   ExternalLink,
   CopyButton,
@@ -9,7 +8,8 @@ import {
   SkeletonLoading,
   breakpointMediaQuery,
   Item,
-} from 'db-ui-toolkit'
+} from '@bootnodedev/db-ui-toolkit'
+import { useSuspenseQuery } from '@tanstack/react-query'
 import request from 'graphql-request'
 import { toast } from 'react-hot-toast'
 import { arbitrum, base, type Chain, optimism, polygon } from 'viem/chains'

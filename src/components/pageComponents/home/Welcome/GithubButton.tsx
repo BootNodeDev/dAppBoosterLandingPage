@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import { ButtonCSS } from '@/src/components/pageComponents/home/Welcome/ButtonCSS'
-import { PrimaryButton } from '@/src/components/sharedComponents/Buttons'
+import { PrimaryButton } from '@/src/components/sharedComponents/ui/Buttons'
 
 const Icon = () => (
   <svg fill="none" height="18" viewBox="0 0 18 18" width="18" xmlns="http://www.w3.org/2000/svg">

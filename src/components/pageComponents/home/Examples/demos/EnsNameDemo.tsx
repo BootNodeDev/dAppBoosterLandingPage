@@ -1,7 +1,7 @@
 import { useEffect, useState, type ChangeEvent } from 'react'
 import styled, { css } from 'styled-components'
 
-import { Spinner, Textfield, breakpointMediaQuery, Item } from 'db-ui-toolkit'
+import { Spinner, Textfield, breakpointMediaQuery, Item } from '@bootnodedev/db-ui-toolkit'
 import { useDebouncedCallback } from 'use-debounce'
 import { type Address } from 'viem'
 import { useEnsName } from 'wagmi'

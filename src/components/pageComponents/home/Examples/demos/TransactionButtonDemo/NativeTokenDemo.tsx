@@ -1,16 +1,16 @@
 import { useState, type ReactElement } from 'react'
 import styled, { css } from 'styled-components'
 
+import { GeneralMessage as GeneralMessageBase } from '@bootnodedev/db-ui-toolkit'
 import { Modal, useModal } from '@faceless-ui/modal'
-import { GeneralMessage as GeneralMessageBase } from 'db-ui-toolkit'
 import { type Hash, type TransactionReceipt, parseEther } from 'viem'
 import { sepolia } from 'viem/chains'
 import { useSendTransaction } from 'wagmi'
 
 import Wrapper from '@/src/components/pageComponents/home/Examples/demos/TransactionButtonDemo/Wrapper'
-import { PrimaryButton } from '@/src/components/sharedComponents/Buttons'
 import TransactionButton from '@/src/components/sharedComponents/TransactionButton'
 import { withWalletStatusVerifier } from '@/src/components/sharedComponents/WalletStatusVerifier'
+import { PrimaryButton } from '@/src/components/sharedComponents/ui/Buttons'
 import { useWeb3StatusConnected } from '@/src/hooks/useWeb3Status'
 
 const GeneralMessage = styled(GeneralMessageBase)<{ status?: 'ok' | 'error' }>`

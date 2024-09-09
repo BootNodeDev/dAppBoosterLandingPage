@@ -1,7 +1,11 @@
 import { type FC, type HTMLAttributes } from 'react'
 import styled, { css } from 'styled-components'
 
-import { InnerContainer as Inner, ContainerPadding, breakpointMediaQuery } from 'db-ui-toolkit'
+import {
+  InnerContainer as Inner,
+  ContainerPadding,
+  breakpointMediaQuery,
+} from '@bootnodedev/db-ui-toolkit'
 
 import { Props as ItemProps } from '@/src/components/pageComponents/home/Examples/Item'
 import List from '@/src/components/pageComponents/home/Examples/List'

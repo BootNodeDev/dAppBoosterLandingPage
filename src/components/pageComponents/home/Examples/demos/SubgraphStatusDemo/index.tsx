@@ -1,8 +1,8 @@
 import { lazy } from 'react'
 
-import { Text } from 'db-ui-toolkit'
+import { Text } from '@bootnodedev/db-ui-toolkit'
 
-import { PrimaryButton } from '@/src/components/sharedComponents/Buttons'
+import { PrimaryButton } from '@/src/components/sharedComponents/ui/Buttons'
 import { isSubgraphConfigValid } from '@/src/constants/common'
 import { withSuspenseAndRetry } from '@/src/utils/suspenseWrapper'
 

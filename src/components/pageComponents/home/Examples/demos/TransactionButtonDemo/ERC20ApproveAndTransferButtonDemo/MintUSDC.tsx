@@ -1,8 +1,8 @@
 import { sepolia } from 'viem/chains'
 import { useWriteContract } from 'wagmi'
 
-import { PrimaryButton } from '@/src/components/sharedComponents/Buttons'
 import TransactionButton from '@/src/components/sharedComponents/TransactionButton'
+import { PrimaryButton } from '@/src/components/sharedComponents/ui/Buttons'
 import { AaveFaucetABI } from '@/src/constants/contracts/abis/AaveFaucet'
 import { getContract } from '@/src/constants/contracts/contracts'
 import { useWeb3StatusConnected } from '@/src/hooks/useWeb3Status'

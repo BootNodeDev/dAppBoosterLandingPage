@@ -1,9 +1,14 @@
 import { type FC } from 'react'
 import styled from 'styled-components'
 
-import { InnerContainer, Footer as BaseFooter, LogoMini, ContainerPadding } from 'db-ui-toolkit'
+import {
+  InnerContainer,
+  Footer as BaseFooter,
+  LogoMini,
+  ContainerPadding,
+} from '@bootnodedev/db-ui-toolkit'
 
-import Socials from '@/src/components/sharedComponents/Footer/Socials'
+import Socials from '@/src/components/sharedComponents/ui/Footer/Socials'
 
 export const Wrapper = styled(BaseFooter)`
   color: var(--theme-footer-text-color);
