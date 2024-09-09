@@ -10,7 +10,7 @@ import { useWeb3StatusConnected } from '@/src/hooks/useWeb3Status'
 export default function MintUSDC({ onSuccess }: { onSuccess: () => void }) {
   const { address } = useWeb3StatusConnected()
   const { writeContractAsync } = useWriteContract()
-  const aaveContract = getContract('ERC20', sepolia.id)
+  const aaveContract = getContract('AaveFaucet', sepolia.id)
   const aaveUSDC = '0x94a9D9AC8a22534E3FaCa9F4e7F2E2cf85d5E4C8'
 
   const handleMint = () => {

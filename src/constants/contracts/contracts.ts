@@ -1,6 +1,7 @@
 import { type Abi, Address, erc20Abi, isAddress } from 'viem'
 import { mainnet, polygon, sepolia } from 'viem/chains'
 
+import { AaveFaucetABI } from '@/src/constants/contracts/abis/AaveFaucet'
 import { ENSRegistryABI } from '@/src/constants/contracts/abis/ENSRegistry'
 import { type ChainsIds } from '@/src/lib/networks.config'
 
@@ -37,6 +38,14 @@ const contracts = [
       [sepolia.id]: '0x0667161579ce7e84EF2b7333f9F93375a627799B',
     },
     name: 'EnsRegistry',
+  },
+  {
+    abi: AaveFaucetABI,
+    address: {
+      11155111: '0xc959483dba39aa9e78757139af0e9a2edeb3f42d',
+      1: '0x0000000000000000000000000000000000000000',
+    },
+    name: 'AaveFaucet',
   },
 ] as const satisfies ContractConfig<Abi>[]
 
