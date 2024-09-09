@@ -1,7 +1,7 @@
 import { type FC, type HTMLAttributes } from 'react'
 import styled, { css } from 'styled-components'
 
-import { breakpointMediaQuery } from 'db-ui-toolkit'
+import { breakpointMediaQuery } from '@bootnodedev/db-ui-toolkit'
 
 import Item, { type Props as ItemProps } from '@/src/components/pageComponents/home/Examples/Item'
 

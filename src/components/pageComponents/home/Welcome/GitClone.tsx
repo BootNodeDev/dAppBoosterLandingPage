@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import styled from 'styled-components'
 
-import { Toast, CopyButton } from 'db-ui-toolkit'
+import { Toast, CopyButton } from '@bootnodedev/db-ui-toolkit'
 import { toast } from 'react-hot-toast'
 
 const CopyIcon = () => (

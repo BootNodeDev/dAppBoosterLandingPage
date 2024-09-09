@@ -1,7 +1,7 @@
 import { type FC } from 'react'
 import styled from 'styled-components'
 
-import { Toast } from 'db-ui-toolkit'
+import { Toast } from '@bootnodedev/db-ui-toolkit'
 import { toast } from 'react-hot-toast'
 import { type Address, type Chain } from 'viem'
 

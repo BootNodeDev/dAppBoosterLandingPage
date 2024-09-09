@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
-import { PrimaryButton } from '@/src/components/sharedComponents/Buttons'
 import SignButtonBase from '@/src/components/sharedComponents/SignButton'
+import { PrimaryButton } from '@/src/components/sharedComponents/ui/Buttons'
 
 const message = `
 👻🚀 Welcome to dAppBooster! 🚀👻

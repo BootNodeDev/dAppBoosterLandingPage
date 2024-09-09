@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import styled, { css } from 'styled-components'
 
-import { Item, breakpointMediaQuery } from 'db-ui-toolkit'
+import { Item, breakpointMediaQuery } from '@bootnodedev/db-ui-toolkit'
 import { arbitrum, mainnet, polygon, optimism } from 'viem/chains'
 
 import { OptionsButton } from '@/src/components/pageComponents/home/Examples/demos/OptionsButton'
@@ -12,7 +12,7 @@ import Optimism from '@/src/components/pageComponents/home/Examples/demos/assets
 import Polygon from '@/src/components/pageComponents/home/Examples/demos/assets/Polygon'
 import TokenInput from '@/src/components/sharedComponents/TokenInput'
 import { useTokenInput } from '@/src/components/sharedComponents/TokenInput/useTokenInput'
-import { type Networks } from '@/src/components/sharedComponents/TokenSelect'
+import { type Networks } from '@/src/components/sharedComponents/TokenSelect/types'
 import { useTokenLists } from '@/src/hooks/useTokenLists'
 import { useTokenSearch } from '@/src/hooks/useTokenSearch'
 import { useWeb3Status } from '@/src/hooks/useWeb3Status'

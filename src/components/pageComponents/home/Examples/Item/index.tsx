@@ -1,7 +1,7 @@
 import { type FC, type HTMLAttributes, type ReactNode } from 'react'
 import styled, { css } from 'styled-components'
 
-import { breakpointMediaQuery } from 'db-ui-toolkit'
+import { breakpointMediaQuery } from '@bootnodedev/db-ui-toolkit'
 
 import BaseBadge from '@/src/components/pageComponents/home/Examples/Item/Badge'
 import DocumentationButton from '@/src/components/pageComponents/home/Examples/Item/DocumentationButton'

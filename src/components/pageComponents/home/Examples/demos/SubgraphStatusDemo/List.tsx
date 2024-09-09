@@ -1,7 +1,7 @@
 import { type FC, useState } from 'react'
 import styled, { css } from 'styled-components'
 
-import { Item, SkeletonLoading, breakpointMediaQuery } from 'db-ui-toolkit'
+import { Item, SkeletonLoading, breakpointMediaQuery } from '@bootnodedev/db-ui-toolkit'
 import { arbitrum, base, type Chain, optimism, polygon } from 'viem/chains'
 
 import { OptionsButton } from '@/src/components/pageComponents/home/Examples/demos/OptionsButton'

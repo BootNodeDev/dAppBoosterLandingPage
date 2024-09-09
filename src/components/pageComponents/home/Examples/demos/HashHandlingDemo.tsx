@@ -1,7 +1,11 @@
-import { useState } from 'react'
+import { useState, type ComponentProps } from 'react'
 import styled, { css } from 'styled-components'
 
-import { Textfield as BaseTextfield, Spinner, breakpointMediaQuery } from 'db-ui-toolkit'
+import {
+  Textfield as BaseTextfield,
+  Spinner,
+  breakpointMediaQuery,
+} from '@bootnodedev/db-ui-toolkit'
 import { type Address } from 'viem'
 import * as chains from 'viem/chains'
 
@@ -86,7 +90,7 @@ const InputWrapper = styled.div`
   width: 100%;
 `
 
-const Textfield = styled(BaseTextfield)`
+const Textfield = styled(BaseTextfield)<ComponentProps<'input'>>`
   display: block;
   padding-right: calc(var(--base-common-padding) * 6);
   position: relative;

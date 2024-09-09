@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-import { breakpointMediaQuery } from 'db-ui-toolkit'
+import { breakpointMediaQuery } from '@bootnodedev/db-ui-toolkit'
 
 import ImgCloudsDark from '@/src/components/pageComponents/home/Welcome/Clouds/assets/img-clouds-dark.svg'
 import ImgCloudsLight from '@/src/components/pageComponents/home/Welcome/Clouds/assets/img-clouds-light.svg'

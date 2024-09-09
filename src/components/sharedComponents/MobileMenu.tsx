@@ -1,8 +1,12 @@
 import { useState } from 'react'
 import styled, { css } from 'styled-components'
 
+import {
+  Logo as BaseLogo,
+  SwitchThemeButton,
+  breakpointMediaQuery,
+} from '@bootnodedev/db-ui-toolkit'
 import { Link } from '@tanstack/react-router'
-import { Logo as BaseLogo, SwitchThemeButton, breakpointMediaQuery } from 'db-ui-toolkit'
 import { useTheme } from 'next-themes'
 
 import { menuItems } from '@/src/constants/menuItems'

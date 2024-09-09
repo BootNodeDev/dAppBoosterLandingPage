@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import styled, { css } from 'styled-components'
 
-import { Item, breakpointMediaQuery } from 'db-ui-toolkit'
+import { Item, breakpointMediaQuery } from '@bootnodedev/db-ui-toolkit'
 
 import { OptionsButton } from '@/src/components/pageComponents/home/Examples/demos/OptionsButton'
 import { OptionsDropdown } from '@/src/components/pageComponents/home/Examples/demos/OptionsDropdown'

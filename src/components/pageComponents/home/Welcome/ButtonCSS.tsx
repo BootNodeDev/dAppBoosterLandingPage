@@ -1,6 +1,6 @@
 import { css } from 'styled-components'
 
-import { breakpointMediaQuery } from 'db-ui-toolkit'
+import { breakpointMediaQuery } from '@bootnodedev/db-ui-toolkit'
 
 export const ButtonCSS = css`
   column-gap: calc(var(--base-gap) * 2);

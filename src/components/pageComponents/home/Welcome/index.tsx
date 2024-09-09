@@ -7,7 +7,7 @@ import {
   InnerContainer as Inner,
   ContainerPadding,
   breakpointMediaQuery,
-} from 'db-ui-toolkit'
+} from '@bootnodedev/db-ui-toolkit'
 
 import { LightClouds, DarkClouds } from '@/src/components/pageComponents/home/Welcome/Clouds'
 import DocsButton from '@/src/components/pageComponents/home/Welcome/DocsButton'

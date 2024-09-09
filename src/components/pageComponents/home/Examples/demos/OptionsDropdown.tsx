@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { Dropdown } from 'db-ui-toolkit'
+import { Dropdown } from '@bootnodedev/db-ui-toolkit'
 
 export const OptionsDropdown = styled(Dropdown).attrs(() => {
   return {
