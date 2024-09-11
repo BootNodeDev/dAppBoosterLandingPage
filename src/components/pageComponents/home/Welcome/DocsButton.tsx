@@ -18,12 +18,7 @@ const Wrapper = styled(SecondaryButton)`
 
 const DocsButton = ({ ...restProps }) => {
   return (
-    <Wrapper
-      as="a"
-      href="https://bootnodedev.github.io/dAppBooster/"
-      target="_blank"
-      {...restProps}
-    >
+    <Wrapper as="a" href="https://docs.dappbooster.dev/" target="_blank" {...restProps}>
       <Icon />
       Docs
     </Wrapper>
