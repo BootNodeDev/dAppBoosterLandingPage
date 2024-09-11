@@ -41,11 +41,13 @@ export const env = createEnv({
     PUBLIC_RPC_POLYGON: z.string().optional(),
     PUBLIC_RPC_POLYGON_MUMBAI: z.string().optional(),
     PUBLIC_RPC_SEPOLIA: z.string().optional(),
-    PUBLIC_WALLETCONNECT_PROJECT_ID: z.string().length(32),
+    PUBLIC_WALLETCONNECT_PROJECT_ID: z.string().optional().default(''),
     PUBLIC_INCLUDE_TESTNETS: zBoolean,
-    PUBLIC_SUBGRAPHS_API_KEY: z.string().optional(),
-    PUBLIC_SUBGRAPHS_CHAINS_RESOURCE_IDS: z.string().optional(),
-    PUBLIC_SUBGRAPHS_ENVIRONMENT: z.string().optional(),
+    PUBLIC_SUBGRAPHS_API_KEY: z.string(),
+    PUBLIC_SUBGRAPHS_CHAINS_RESOURCE_IDS: z.string(),
+    PUBLIC_SUBGRAPHS_ENVIRONMENT: z
+      .union([z.literal('development'), z.literal('production')])
+      .default('production'),
     PUBLIC_SUBGRAPHS_DEVELOPMENT_URL: z.string().optional(),
     PUBLIC_SUBGRAPHS_PRODUCTION_URL: z.string().optional(),
   },
