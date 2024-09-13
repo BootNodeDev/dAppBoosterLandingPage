@@ -42,14 +42,14 @@ const OptimismCrossDomainMessenger = withWalletStatusVerifier(
               rel="noreferrer"
               target="_blank"
             >
-              Optimism sepolia AAVE market
+              Optimism Sepolia AAVE market
             </a>{' '}
-            from sepolia.
+            from Sepolia.
           </p>
           <PrimaryButton as={TransactionButton} key="send" transaction={sendCrossChainMessage}>
             Deposit ETH
           </PrimaryButton>
-          Deposit take approximately 1-3 minutes.
+          Deposits take approximately 1-3 minutes.
         </Wrapper>
       </WalletStatusVerifier>
     )
