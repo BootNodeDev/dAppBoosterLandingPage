@@ -33,25 +33,23 @@ const OptimismCrossDomainMessenger = withWalletStatusVerifier(
     })
 
     return (
-      <WalletStatusVerifier chainId={sepolia.id} fallback={<ConnectButton />}>
-        <Wrapper title="Execute transaction">
-          <p>
-            Deposit <b>0.01</b> ETH in{' '}
-            <a
-              href="https://staging.aave.com/?marketName=proto_optimism_sepolia_v3"
-              rel="noreferrer"
-              target="_blank"
-            >
-              Optimism Sepolia AAVE market
-            </a>{' '}
-            from Sepolia.
-          </p>
-          <PrimaryButton as={TransactionButton} key="send" transaction={sendCrossChainMessage}>
-            Deposit ETH
-          </PrimaryButton>
-          <p>Deposits take approximately 1-3 minutes.</p>
-        </Wrapper>
-      </WalletStatusVerifier>
+      <Wrapper title="Execute transaction">
+        <p>
+          Deposit <b>0.01</b> ETH in{' '}
+          <a
+            href="https://staging.aave.com/?marketName=proto_optimism_sepolia_v3"
+            rel="noreferrer"
+            target="_blank"
+          >
+            Optimism Sepolia AAVE market
+          </a>{' '}
+          from Sepolia.
+        </p>
+        <PrimaryButton as={TransactionButton} key="send" transaction={sendCrossChainMessage}>
+          Deposit ETH
+        </PrimaryButton>
+        <p>Deposits take approximately 1-3 minutes.</p>
+      </Wrapper>
     )
   }),
 )
