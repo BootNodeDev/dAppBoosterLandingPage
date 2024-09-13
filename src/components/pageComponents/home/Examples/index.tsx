@@ -11,6 +11,7 @@ import { Props as ItemProps } from '@/src/components/pageComponents/home/Example
 import List from '@/src/components/pageComponents/home/Examples/List'
 import ImgEns from '@/src/components/pageComponents/home/Examples/assets/Ens'
 import ImgInputAddress from '@/src/components/pageComponents/home/Examples/assets/InputAddress'
+import OptimismIcon from '@/src/components/pageComponents/home/Examples/assets/Optimism'
 import ImgSign from '@/src/components/pageComponents/home/Examples/assets/Sign'
 import ImgSubgraph from '@/src/components/pageComponents/home/Examples/assets/Subgraph'
 import ImgSubgraphStatus from '@/src/components/pageComponents/home/Examples/assets/SubgraphStatus'
@@ -21,6 +22,7 @@ import ImgTransaction from '@/src/components/pageComponents/home/Examples/assets
 import ImgWallet from '@/src/components/pageComponents/home/Examples/assets/Wallet'
 import EnsNameDemo from '@/src/components/pageComponents/home/Examples/demos/EnsNameDemo'
 import HashHandlingDemo from '@/src/components/pageComponents/home/Examples/demos/HashHandlingDemo'
+import OptimismCrossDomainMessenger from '@/src/components/pageComponents/home/Examples/demos/OptimismCrossDomainMessenger'
 import SignMessageDemo from '@/src/components/pageComponents/home/Examples/demos/SignMessageDemo'
 import SubgraphDemo from '@/src/components/pageComponents/home/Examples/demos/SubgraphDemo'
 import SubgraphStatusDemo from '@/src/components/pageComponents/home/Examples/demos/SubgraphStatusDemo'
@@ -204,6 +206,26 @@ const Examples: FC<HTMLAttributes<HTMLElement>> = ({ ...restProps }) => {
       icon: <ImgSign />,
       text: 'Sign a message with your wallet and get the signature on a dialog.',
       title: 'Sign button',
+    },
+    {
+      sourceCodeHref:
+        'https://github.com/BootNodeDev/dAppBooster/blob/main/src/hooks/useL1CrossDomainMessengerProxy.ts',
+      demo: <OptimismCrossDomainMessenger />,
+      href: 'https://bootnodedev.github.io/dAppBooster/modules/hooks_useL1CrossDomainMessengerProxy.html',
+      icon: <OptimismIcon />,
+      text: (
+        <>
+          Learn more in{' '}
+          <a
+            href="https://docs.optimism.io/builders/app-developers/bridging/messaging"
+            rel="noreferrer"
+            target="_blank"
+          >
+            Optimism cross domain messenger.
+          </a>
+        </>
+      ),
+      title: 'Optimism cross domain messenger',
     },
   ]
 

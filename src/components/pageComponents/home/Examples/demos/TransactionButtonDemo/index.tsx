@@ -2,11 +2,13 @@ import { useState } from 'react'
 import styled, { css } from 'styled-components'
 
 import { Item, breakpointMediaQuery } from '@bootnodedev/db-ui-toolkit'
+import { sepolia } from 'viem/chains'
 
 import { OptionsButton } from '@/src/components/pageComponents/home/Examples/demos/OptionsButton'
 import { OptionsDropdown } from '@/src/components/pageComponents/home/Examples/demos/OptionsDropdown'
 import ERC20ApproveAndTransferButtonDemo from '@/src/components/pageComponents/home/Examples/demos/TransactionButtonDemo/ERC20ApproveAndTransferButtonDemo'
 import NativeTokenDemo from '@/src/components/pageComponents/home/Examples/demos/TransactionButtonDemo/NativeTokenDemo'
+import { WalletStatusVerifier } from '@/src/components/sharedComponents/WalletStatusVerifier'
 
 const Wrapper = styled.div`
   align-items: center;
@@ -34,23 +36,25 @@ const TransactionButtonDemo = () => {
   const [currentTokenInput, setCurrentTokenInput] = useState<Options>('erc20')
 
   return (
-    <Wrapper>
-      <OptionsDropdown
-        button={
-          <OptionsButton>
-            {dropdownItems.find((item) => item.type === currentTokenInput)?.label}
-          </OptionsButton>
-        }
-        defaultActiveItem={0}
-        items={dropdownItems.map((item, index) => (
-          <Item key={index} onClick={() => setCurrentTokenInput(item.type as Options)}>
-            {item.label}
-          </Item>
-        ))}
-      />
-      {currentTokenInput === 'erc20' && <ERC20ApproveAndTransferButtonDemo />}
-      {currentTokenInput === 'native' && <NativeTokenDemo />}
-    </Wrapper>
+    <WalletStatusVerifier chainId={sepolia.id}>
+      <Wrapper>
+        <OptionsDropdown
+          button={
+            <OptionsButton>
+              {dropdownItems.find((item) => item.type === currentTokenInput)?.label}
+            </OptionsButton>
+          }
+          defaultActiveItem={0}
+          items={dropdownItems.map((item, index) => (
+            <Item key={index} onClick={() => setCurrentTokenInput(item.type as Options)}>
+              {item.label}
+            </Item>
+          ))}
+        />
+        {currentTokenInput === 'erc20' && <ERC20ApproveAndTransferButtonDemo />}
+        {currentTokenInput === 'native' && <NativeTokenDemo />}
+      </Wrapper>
+    </WalletStatusVerifier>
   )
 }
 
