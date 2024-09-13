@@ -1,7 +1,7 @@
 import { parseEther } from 'viem'
 import { optimismSepolia, sepolia } from 'viem/chains'
 
-import Wrapper from '@/src/components/pageComponents/home/Examples/demos/TransactionButtonDemo/Wrapper'
+import Wrapper from '@/src/components/pageComponents/home/Examples/demos/OptimismCrossDomainMessenger/Wrapper'
 import ConnectButton from '@/src/components/sharedComponents/ConnectButton'
 import TransactionButton from '@/src/components/sharedComponents/TransactionButton'
 import {
@@ -34,7 +34,7 @@ const OptimismCrossDomainMessenger = withWalletStatusVerifier(
 
     return (
       <WalletStatusVerifier chainId={sepolia.id} fallback={<ConnectButton />}>
-        <Wrapper text={''} title="Execute transaction">
+        <Wrapper title="Execute transaction">
           <p>
             Deposit <b>0.01</b> ETH in{' '}
             <a
@@ -49,7 +49,7 @@ const OptimismCrossDomainMessenger = withWalletStatusVerifier(
           <PrimaryButton as={TransactionButton} key="send" transaction={sendCrossChainMessage}>
             Deposit ETH
           </PrimaryButton>
-          Deposits take approximately 1-3 minutes.
+          <p>Deposits take approximately 1-3 minutes.</p>
         </Wrapper>
       </WalletStatusVerifier>
     )
