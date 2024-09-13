@@ -2,12 +2,8 @@ import { parseEther } from 'viem'
 import { optimismSepolia, sepolia } from 'viem/chains'
 
 import Wrapper from '@/src/components/pageComponents/home/Examples/demos/OptimismCrossDomainMessenger/Wrapper'
-import ConnectButton from '@/src/components/sharedComponents/ConnectButton'
 import TransactionButton from '@/src/components/sharedComponents/TransactionButton'
-import {
-  WalletStatusVerifier,
-  withWalletStatusVerifier,
-} from '@/src/components/sharedComponents/WalletStatusVerifier'
+import { withWalletStatusVerifier } from '@/src/components/sharedComponents/WalletStatusVerifier'
 import { PrimaryButton } from '@/src/components/sharedComponents/ui/Buttons'
 import { getContract } from '@/src/constants/contracts/contracts'
 import { useL1CrossDomainMessengerProxy } from '@/src/hooks/useL1CrossDomainMessengerProxy'
