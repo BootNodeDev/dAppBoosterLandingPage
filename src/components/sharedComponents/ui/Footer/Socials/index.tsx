@@ -25,7 +25,7 @@ const Link = styled.a`
 
 const Socials: FC<HTMLAttributes<HTMLDivElement>> = ({ ...restProps }) => {
   const items = [
-    { label: 'Telegram', icon: <Telegram />, href: 'https://t.me/mgarciap' },
+    { label: 'Telegram', icon: <Telegram />, href: 'https://t.me/dAppBooster' },
     { label: 'Github', icon: <Github />, href: 'https://github.com/BootNodeDev' },
     { label: 'Twitter', icon: <Twitter />, href: 'https://twitter.com/bootnodedev' },
     {
