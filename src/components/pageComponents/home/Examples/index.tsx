@@ -6,7 +6,6 @@ import {
   ContainerPadding,
   breakpointMediaQuery,
 } from '@bootnodedev/db-ui-toolkit'
-import { optimismSepolia } from 'viem/chains'
 
 import { Props as ItemProps } from '@/src/components/pageComponents/home/Examples/Item'
 import List from '@/src/components/pageComponents/home/Examples/List'
