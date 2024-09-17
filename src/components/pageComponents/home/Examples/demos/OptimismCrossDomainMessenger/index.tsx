@@ -6,7 +6,7 @@ import TransactionButton from '@/src/components/sharedComponents/TransactionButt
 import { withWalletStatusVerifier } from '@/src/components/sharedComponents/WalletStatusVerifier'
 import { PrimaryButton } from '@/src/components/sharedComponents/ui/Buttons'
 import { getContract } from '@/src/constants/contracts/contracts'
-import { useL1CrossDomainMessengerProxy } from '@/src/hooks/useL1CrossDomainMessengerProxy'
+import { useL1CrossDomainMessengerProxy } from '@/src/hooks/useOPL1CrossDomainMessengerProxy'
 import { useWeb3StatusConnected } from '@/src/hooks/useWeb3Status'
 import { withSuspenseAndRetry } from '@/src/utils/suspenseWrapper'
 

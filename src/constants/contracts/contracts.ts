@@ -11,7 +11,7 @@ import { mainnet, optimismSepolia, polygon, sepolia } from 'viem/chains'
 import { AAVEWethABI } from '@/src/constants/contracts/abis/AAVEWeth'
 import { AaveFaucetABI } from '@/src/constants/contracts/abis/AaveFaucet'
 import { ENSRegistryABI } from '@/src/constants/contracts/abis/ENSRegistry'
-import { L1CrossDomainMessengerProxyABI } from '@/src/constants/contracts/abis/L1CrossDomainMessengerProxy'
+import { OPL1CrossDomainMessengerProxyABI } from '@/src/constants/contracts/abis/OPL1CrossDomainMessengerProxy'
 import { type ChainsIds } from '@/src/lib/networks.config'
 
 type OptionalAddresses = Partial<Record<ChainsIds, Address>>
@@ -57,12 +57,12 @@ const contracts = [
     name: 'AaveFaucet',
   },
   {
-    abi: L1CrossDomainMessengerProxyABI,
+    abi: OPL1CrossDomainMessengerProxyABI,
     address: {
       [mainnet.id]: '0x25ace71c97B33Cc4729CF772ae268934F7ab5fA1',
       [sepolia.id]: '0x58Cc85b8D04EA49cC6DBd3CbFFd00B4B8D6cb3ef',
     },
-    name: 'L1CrossDomainMessengerProxy',
+    name: 'OPL1CrossDomainMessengerProxy',
   },
   {
     abi: AAVEWethABI,
