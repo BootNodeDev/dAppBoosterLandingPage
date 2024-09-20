@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import styled from 'styled-components'
 
-import { Address, parseEther } from 'viem'
+import type { Address } from 'viem'
+import { parseEther } from 'viem'
 import { optimismSepolia, sepolia } from 'viem/chains'
 import { extractTransactionDepositedLogs, getL2TransactionHash } from 'viem/op-stack'
 

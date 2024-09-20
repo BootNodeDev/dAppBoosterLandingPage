@@ -7,7 +7,7 @@ import {
   breakpointMediaQuery,
 } from '@bootnodedev/db-ui-toolkit'
 
-import { Props as ItemProps } from '@/src/components/pageComponents/home/Examples/Item'
+import type { Props as ItemProps } from '@/src/components/pageComponents/home/Examples/Item'
 import List from '@/src/components/pageComponents/home/Examples/List'
 import ImgEns from '@/src/components/pageComponents/home/Examples/assets/Ens'
 import ImgInputAddress from '@/src/components/pageComponents/home/Examples/assets/InputAddress'
