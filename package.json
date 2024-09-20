@@ -61,7 +61,7 @@
     "@graphql-typed-document-node/core": "^3.2.0",
     "@parcel/watcher": "^2.4.1",
     "@tanstack/react-query-devtools": "^5.36.0",
-    "@tanstack/router-cli": "^1.32.2",
+    "@tanstack/router-cli": "^1.58.1",
     "@tanstack/router-devtools": "^1.32.5",
     "@tanstack/router-vite-plugin": "^1.32.2",
     "@testing-library/jest-dom": "^6.4.5",
