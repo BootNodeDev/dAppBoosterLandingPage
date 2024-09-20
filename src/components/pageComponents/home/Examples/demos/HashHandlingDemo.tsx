@@ -12,7 +12,7 @@ import * as chains from 'viem/chains'
 import HashDemo from '@/src/components/pageComponents/home/Examples/demos/HashDemo'
 import HashInput from '@/src/components/sharedComponents/HashInput'
 import { useWeb3Status } from '@/src/hooks/useWeb3Status'
-import { DetectedHash } from '@/src/utils/hash'
+import type { DetectedHash } from '@/src/utils/hash'
 
 const AlertIcon = () => (
   <svg fill="none" height="21" viewBox="0 0 22 21" width="22" xmlns="http://www.w3.org/2000/svg">
