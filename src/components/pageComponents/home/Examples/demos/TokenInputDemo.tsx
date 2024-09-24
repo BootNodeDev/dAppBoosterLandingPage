@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import styled, { css } from 'styled-components'
 
-import { Item, breakpointMediaQuery } from '@bootnodedev/db-ui-toolkit'
+import { Item, breakpointMediaQuery, SkeletonLoading } from '@bootnodedev/db-ui-toolkit'
 import { arbitrum, mainnet, polygon, optimism } from 'viem/chains'
 
 import { OptionsButton } from '@/src/components/pageComponents/home/Examples/demos/OptionsButton'
@@ -16,10 +16,11 @@ import { type Networks } from '@/src/components/sharedComponents/TokenSelect/typ
 import { useTokenLists } from '@/src/hooks/useTokenLists'
 import { useTokenSearch } from '@/src/hooks/useTokenSearch'
 import { useWeb3Status } from '@/src/hooks/useWeb3Status'
+import { withSuspenseAndRetry } from '@/src/utils/suspenseWrapper'
 
 const Wrapper = styled.div`
-  max-width: 100%;
   padding-top: var(--base-common-padding);
+  width: 100%;
 
   ${breakpointMediaQuery(
     'desktopStart',
@@ -31,51 +32,97 @@ const Wrapper = styled.div`
 
 type Options = 'single' | 'multi'
 
+const SkeletonLoadingTokenInput = () => (
+  <SkeletonLoading
+    $animate={false}
+    style={{
+      height: '144px',
+      display: 'flex',
+      flexDirection: 'column',
+      padding: '16px',
+      rowGap: '8px',
+      width: '100%',
+    }}
+  >
+    <SkeletonLoading style={{ width: '80px', minHeight: '0', height: '17px' }} />
+    <SkeletonLoading style={{ width: '100%', minHeight: '58px', borderRadius: '8px' }} />
+  </SkeletonLoading>
+)
+
+const TokenInputs = withSuspenseAndRetry(
+  ({ currentTokenInput }: { currentTokenInput: Options }) => {
+    const { isWalletConnected } = useWeb3Status()
+    const [currentNetworkId, setCurrentNetworkId] = useState<number>()
+    const { tokensByChainId } = useTokenLists()
+    const { searchResult } = useTokenSearch({
+      tokens: tokensByChainId[1],
+      defaultSearchTerm: 'WETH',
+    })
+    const tokenInputMulti = useTokenInput()
+    const tokenInputSingle = useTokenInput(searchResult[0])
+
+    const networks: Networks = [
+      {
+        icon: <Eth />,
+        id: mainnet.id,
+        label: mainnet.name,
+        onClick: () => setCurrentNetworkId(mainnet.id),
+      },
+      {
+        icon: <Optimism />,
+        id: optimism.id,
+        label: optimism.name,
+        onClick: () => setCurrentNetworkId(optimism.id),
+      },
+      {
+        icon: <Arbitrum />,
+        id: arbitrum.id,
+        label: arbitrum.name,
+        onClick: () => setCurrentNetworkId(arbitrum.id),
+      },
+      {
+        icon: <Polygon />,
+        id: polygon.id,
+        label: polygon.name,
+        onClick: () => setCurrentNetworkId(polygon.id),
+      },
+    ]
+
+    return (
+      <>
+        {currentTokenInput === 'multi' && (
+          <TokenInput
+            currentNetworkId={currentNetworkId}
+            networks={networks}
+            showAddTokenButton
+            showBalance={isWalletConnected}
+            showTopTokens
+            title="You pay"
+            tokenInput={tokenInputMulti}
+          />
+        )}
+        {currentTokenInput === 'single' && (
+          <TokenInput
+            currentNetworkId={currentNetworkId}
+            networks={networks}
+            showAddTokenButton
+            showBalance={isWalletConnected}
+            showTopTokens
+            singleToken
+            title="You pay"
+            tokenInput={tokenInputSingle}
+          />
+        )}
+      </>
+    )
+  },
+)
+
 /**
  * This demo uses the TokenInput component to show how to use it in a single
  * token or multi token mode.
  */
 const TokenInputDemo = () => {
-  const { isWalletConnected } = useWeb3Status()
-  const [currentNetworkId, setCurrentNetworkId] = useState<number>()
-  const { tokensByChainId } = useTokenLists()
-  const { searchResult } = useTokenSearch({ tokens: tokensByChainId[1], defaultSearchTerm: 'WETH' })
-  const tokenInputMulti = useTokenInput()
-  const tokenInputSingle = useTokenInput(searchResult[0])
-
-  const networks: Networks = [
-    {
-      icon: <Eth />,
-      id: mainnet.id,
-      label: mainnet.name,
-      onClick: () => setCurrentNetworkId(mainnet.id),
-    },
-    {
-      icon: <Optimism />,
-      id: optimism.id,
-      label: optimism.name,
-      onClick: () => setCurrentNetworkId(optimism.id),
-    },
-    {
-      icon: <Arbitrum />,
-      id: arbitrum.id,
-      label: arbitrum.name,
-      onClick: () => setCurrentNetworkId(arbitrum.id),
-    },
-    {
-      icon: <Polygon />,
-      id: polygon.id,
-      label: polygon.name,
-      onClick: () => setCurrentNetworkId(polygon.id),
-    },
-  ]
-
-  // useEffect(() => {
-  //   currentToken && console.log(currentToken)
-  //   amount && console.log(amount)
-  //   error && console.log(error)
-  // }, [currentToken, amount, error])
-
   const dropdownItems = [
     { label: 'Single token', type: 'single' },
     { label: 'Multi token', type: 'multi' },
@@ -97,30 +144,10 @@ const TokenInputDemo = () => {
           </Item>
         ))}
       />
-
-      {currentTokenInput === 'multi' && (
-        <TokenInput
-          currentNetworkId={currentNetworkId}
-          networks={networks}
-          showAddTokenButton
-          showBalance={isWalletConnected}
-          showTopTokens
-          title="You pay"
-          tokenInput={tokenInputMulti}
-        />
-      )}
-      {currentTokenInput === 'single' && (
-        <TokenInput
-          currentNetworkId={currentNetworkId}
-          networks={networks}
-          showAddTokenButton
-          showBalance={isWalletConnected}
-          showTopTokens
-          singleToken
-          title="You pay"
-          tokenInput={tokenInputSingle}
-        />
-      )}
+      <TokenInputs
+        currentTokenInput={currentTokenInput}
+        suspenseFallback={<SkeletonLoadingTokenInput />}
+      />
     </Wrapper>
   )
 }
