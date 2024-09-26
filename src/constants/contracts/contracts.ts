@@ -12,7 +12,7 @@ import { AAVEWethABI } from '@/src/constants/contracts/abis/AAVEWeth'
 import { AaveFaucetABI } from '@/src/constants/contracts/abis/AaveFaucet'
 import { ENSRegistryABI } from '@/src/constants/contracts/abis/ENSRegistry'
 import { OPL1CrossDomainMessengerProxyABI } from '@/src/constants/contracts/abis/OPL1CrossDomainMessengerProxy'
-import { type ChainsIds } from '@/src/lib/networks.config'
+import type { ChainsIds } from '@/src/lib/networks.config'
 
 type OptionalAddresses = Partial<Record<ChainsIds, Address>>
 type ContractConfig<TAbi> = {
@@ -85,8 +85,9 @@ export type ContractNames = (typeof contracts)[number]['name']
 type ContractOfName<CN extends ContractNames> = Extract<(typeof contracts)[number], { name: CN }>
 type AbiOfName<CN extends ContractNames> = ContractOfName<CN>['abi']
 
-type AddressRecord<T extends ContractNames> =
-  ContractOfName<T> extends { address: infer K } ? K : never
+type AddressRecord<T extends ContractNames> = ContractOfName<T> extends { address: infer K }
+  ? K
+  : never
 type ChainIdOf<T extends ContractNames> = keyof AddressRecord<T>
 
 export type ContractFunctionName<CN extends ContractNames> = WagmiContractFunctionName<
