@@ -8,8 +8,8 @@ import Wrapper from '@/src/components/pageComponents/home/Examples/demos/Transac
 import { withWalletStatusVerifier } from '@/src/components/sharedComponents/WalletStatusVerifier'
 import { useSuspenseReadErc20BalanceOf } from '@/src/hooks/generated'
 import { useWeb3StatusConnected } from '@/src/hooks/useWeb3Status'
-import { type Token } from '@/src/types/token'
-import { formatNumberOrString, NumberType } from '@/src/utils/numberFormat'
+import type { Token } from '@/src/types/token'
+import { NumberType, formatNumberOrString } from '@/src/utils/numberFormat'
 import { withSuspense } from '@/src/utils/suspenseWrapper'
 
 // USDC token on Sepolia chain
@@ -90,7 +90,10 @@ const ERC20ApproveAndTransferButtonDemo = withWalletStatusVerifier(
     return (
       <>
         {balance < amount ? (
-          <Wrapper text={`Get Sepolia USDC from Aave faucet`} title={'Mint USDC'}>
+          <Wrapper
+            text={'Get Sepolia USDC from Aave faucet'}
+            title={'Mint USDC'}
+          >
             <MintUSDC onSuccess={refetchBalance} />
           </Wrapper>
         ) : (

@@ -27,7 +27,7 @@ export default function MintUSDC({ onSuccess }: { onSuccess: () => void }) {
     <PrimaryButton
       as={TransactionButton}
       key="mint"
-      labelSending={`Minting USDC`}
+      labelSending={'Minting USDC'}
       onMined={onSuccess}
       transaction={handleMint}
     >

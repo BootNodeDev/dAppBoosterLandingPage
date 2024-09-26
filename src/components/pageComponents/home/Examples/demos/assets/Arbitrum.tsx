@@ -1,4 +1,4 @@
-import { type FC, type HTMLAttributes } from 'react'
+import type { FC, HTMLAttributes } from 'react'
 import { styled } from 'styled-components'
 
 const Wrapper = styled.svg`
@@ -8,7 +8,12 @@ const Wrapper = styled.svg`
 `
 
 const Icon: FC<HTMLAttributes<SVGElement>> = ({ ...restProps }) => (
-  <Wrapper fill="none" viewBox="0 0 382 381" xmlns="http://www.w3.org/2000/svg" {...restProps}>
+  <Wrapper
+    fill="none"
+    viewBox="0 0 382 381"
+    xmlns="http://www.w3.org/2000/svg"
+    {...restProps}
+  >
     <path
       d="M191.158 380.495C297.186 380.495 381.336 294.674 381.336 190.341C381.336 84.3262 295.503 0.187256 191.158 0.187256C85.1305 0.187256 0.981354 86.009 0.981354 190.341C0.981354 294.674 86.8135 380.495 191.158 380.495Z"
       fill="#2C374B"

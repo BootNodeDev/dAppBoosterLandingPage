@@ -1,9 +1,9 @@
 import { type FC, useState } from 'react'
 import styled, { css } from 'styled-components'
 
-import { useSubgraphIndexingStatus, type SchemaMappingConfig } from '@bootnodedev/db-subgraph'
+import { type SchemaMappingConfig, useSubgraphIndexingStatus } from '@bootnodedev/db-subgraph'
 import { Item, SkeletonLoading, breakpointMediaQuery } from '@bootnodedev/db-ui-toolkit'
-import { arbitrum, base, type Chain, optimism, polygon } from 'viem/chains'
+import { type Chain, arbitrum, base, optimism, polygon } from 'viem/chains'
 
 import { OptionsButton } from '@/src/components/pageComponents/home/Examples/demos/OptionsButton'
 import { OptionsDropdown } from '@/src/components/pageComponents/home/Examples/demos/OptionsDropdown'
@@ -148,7 +148,7 @@ const SubgraphStatus: FC<{
         {`${resource}@${chain.id}`}
         {getNetworkIcon(chain.name.toLowerCase())}
       </Title>
-      <Data $status={isSynced ? `ok` : `error`}>
+      <Data $status={isSynced ? 'ok' : 'error'}>
         <SG>
           <b>SG:</b> {subgraphBlockNumber.toString()}
         </SG>
@@ -197,8 +197,11 @@ const List = ({ ...restProps }) => {
           </OptionsButton>
         }
         defaultActiveItem={0}
-        items={dropdownItems.map((item, index) => (
-          <Item key={index} onClick={() => setCurrentChain(item)}>
+        items={dropdownItems.map((item) => (
+          <Item
+            key={`${item.id}`}
+            onClick={() => setCurrentChain(item)}
+          >
             {item.name}
           </Item>
         ))}
@@ -206,7 +209,11 @@ const List = ({ ...restProps }) => {
       {uniswapNetworks.map(
         (chain) =>
           currentChain?.id === chain.id && (
-            <Uniswap chain={chain} key={chain.id} suspenseFallback={<SkeletonLoadingItem />} />
+            <Uniswap
+              chain={chain}
+              key={chain.id}
+              suspenseFallback={<SkeletonLoadingItem />}
+            />
           ),
       )}
       {currentChain?.id === base.id && <Aave suspenseFallback={<SkeletonLoadingItem />} />}

@@ -1,4 +1,4 @@
-import { arbitrum, mainnet, polygon, optimism } from 'viem/chains'
+import { arbitrum, mainnet, optimism, polygon } from 'viem/chains'
 
 import Arbitrum from '@/src/components/pageComponents/home/Examples/demos/assets/Arbitrum'
 import Eth from '@/src/components/pageComponents/home/Examples/demos/assets/Eth'

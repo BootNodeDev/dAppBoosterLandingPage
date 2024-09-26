@@ -1,9 +1,9 @@
-import { useEffect, useState, type ChangeEvent } from 'react'
+import { type ChangeEvent, useEffect, useState } from 'react'
 import styled, { css } from 'styled-components'
 
-import { Spinner, Textfield, breakpointMediaQuery, Item } from '@bootnodedev/db-ui-toolkit'
+import { Item, Spinner, Textfield, breakpointMediaQuery } from '@bootnodedev/db-ui-toolkit'
 import { useDebouncedCallback } from 'use-debounce'
-import { type Address } from 'viem'
+import type { Address } from 'viem'
 import { useEnsName } from 'wagmi'
 import { mainnet } from 'wagmi/chains'
 
@@ -86,11 +86,14 @@ const EnsNameSearch = ({ address }: { address?: Address }) => {
   return (
     <>
       {status === 'pending' ? (
-        <Spinner height={20} width={20} />
+        <Spinner
+          height={20}
+          width={20}
+        />
       ) : status === 'error' ? (
         `Error fetching ENS name (${error.message})`
       ) : data === undefined || data === null ? (
-        `Not available`
+        'Not available'
       ) : (
         data
       )}
@@ -136,9 +139,9 @@ const EnsNameDemo = () => {
             </ButtonText>
           </OptionsButton>
         }
-        items={dropdownItems.map((item, index) => (
+        items={dropdownItems.map((item) => (
           <Item
-            key={index}
+            key={`${item}`}
             onClick={() => {
               setCurrentItem(item)
               setValue(item as Address)

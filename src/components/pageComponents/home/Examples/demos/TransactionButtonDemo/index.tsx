@@ -45,8 +45,11 @@ const TransactionButtonDemo = () => {
             </OptionsButton>
           }
           defaultActiveItem={0}
-          items={dropdownItems.map((item, index) => (
-            <Item key={index} onClick={() => setCurrentTokenInput(item.type as Options)}>
+          items={dropdownItems.map((item) => (
+            <Item
+              key={`${item.type}`}
+              onClick={() => setCurrentTokenInput(item.type as Options)}
+            >
               {item.label}
             </Item>
           ))}

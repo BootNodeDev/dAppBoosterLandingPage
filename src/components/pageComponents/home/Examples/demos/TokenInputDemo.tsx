@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import styled, { css } from 'styled-components'
 
-import { Item, breakpointMediaQuery, SkeletonLoading } from '@bootnodedev/db-ui-toolkit'
-import { arbitrum, mainnet, polygon, optimism } from 'viem/chains'
+import { Item, SkeletonLoading, breakpointMediaQuery } from '@bootnodedev/db-ui-toolkit'
+import { arbitrum, mainnet, optimism, polygon } from 'viem/chains'
 
 import { OptionsButton } from '@/src/components/pageComponents/home/Examples/demos/OptionsButton'
 import { OptionsDropdown } from '@/src/components/pageComponents/home/Examples/demos/OptionsDropdown'
@@ -12,7 +12,7 @@ import Optimism from '@/src/components/pageComponents/home/Examples/demos/assets
 import Polygon from '@/src/components/pageComponents/home/Examples/demos/assets/Polygon'
 import TokenInput from '@/src/components/sharedComponents/TokenInput'
 import { useTokenInput } from '@/src/components/sharedComponents/TokenInput/useTokenInput'
-import { type Networks } from '@/src/components/sharedComponents/TokenSelect/types'
+import type { Networks } from '@/src/components/sharedComponents/TokenSelect/types'
 import { useTokenLists } from '@/src/hooks/useTokenLists'
 import { useTokenSearch } from '@/src/hooks/useTokenSearch'
 import { useWeb3Status } from '@/src/hooks/useWeb3Status'
@@ -138,8 +138,11 @@ const TokenInputDemo = () => {
           </OptionsButton>
         }
         defaultActiveItem={0}
-        items={dropdownItems.map((item, index) => (
-          <Item key={index} onClick={() => setCurrentTokenInput(item.type as Options)}>
+        items={dropdownItems.map((item) => (
+          <Item
+            key={`${item.type}`}
+            onClick={() => setCurrentTokenInput(item.type as Options)}
+          >
             {item.label}
           </Item>
         ))}
