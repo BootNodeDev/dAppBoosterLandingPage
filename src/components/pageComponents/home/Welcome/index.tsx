@@ -1,15 +1,15 @@
-import { type FC, type HTMLAttributes } from 'react'
+import type { FC, HTMLAttributes } from 'react'
 import styled, { css } from 'styled-components'
 
 import {
-  Title as BasetTitle,
   Text as BaseText,
-  InnerContainer as Inner,
+  Title as BasetTitle,
   ContainerPadding,
+  InnerContainer as Inner,
   breakpointMediaQuery,
 } from '@bootnodedev/db-ui-toolkit'
 
-import { LightClouds, DarkClouds } from '@/src/components/pageComponents/home/Welcome/Clouds'
+import { DarkClouds, LightClouds } from '@/src/components/pageComponents/home/Welcome/Clouds'
 import DocsButton from '@/src/components/pageComponents/home/Welcome/DocsButton'
 import BaseGhost from '@/src/components/pageComponents/home/Welcome/Ghost'
 import GitClone from '@/src/components/pageComponents/home/Welcome/GitClone'

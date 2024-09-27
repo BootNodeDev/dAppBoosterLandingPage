@@ -1,4 +1,4 @@
-import { type FC, type HTMLAttributes } from 'react'
+import type { FC, HTMLAttributes } from 'react'
 import styled, { css } from 'styled-components'
 
 import { breakpointMediaQuery } from '@bootnodedev/db-ui-toolkit'
@@ -66,7 +66,10 @@ const List: FC<Props> = ({ items, ...restProps }) => {
       <Title>Built-in Features</Title>
       <Items>
         {items.map((item) => (
-          <Item key={item.title} {...item} />
+          <Item
+            key={item.title}
+            {...item}
+          />
         ))}
       </Items>
     </Wrapper>

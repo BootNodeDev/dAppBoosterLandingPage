@@ -1,4 +1,4 @@
-import { type FC, type HTMLAttributes } from 'react'
+import type { FC, HTMLAttributes } from 'react'
 import styled from 'styled-components'
 
 import Github from '@/src/components/sharedComponents/ui/Footer/Socials/assets/Github'
@@ -37,8 +37,14 @@ const Socials: FC<HTMLAttributes<HTMLDivElement>> = ({ ...restProps }) => {
 
   return (
     <Wrapper {...restProps}>
-      {items.map(({ href, icon, label }, index) => (
-        <Link href={href} key={index} rel="noreferrer" target="_blank" title={label}>
+      {items.map(({ href, icon, label }) => (
+        <Link
+          href={href}
+          key={`${href}`}
+          rel="noreferrer"
+          target="_blank"
+          title={label}
+        >
           {icon}
         </Link>
       ))}

@@ -1,9 +1,9 @@
-import { type FC } from 'react'
+import type { FC } from 'react'
 import styled from 'styled-components'
 
 import { Toast } from '@bootnodedev/db-ui-toolkit'
 import { toast } from 'react-hot-toast'
-import { type Address, type Chain } from 'viem'
+import type { Address, Chain } from 'viem'
 
 import Hash from '@/src/components/sharedComponents/Hash'
 import { getExplorerLink } from '@/src/utils/getExplorerLink'

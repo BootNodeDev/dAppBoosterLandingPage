@@ -1,9 +1,9 @@
-import { type FC, type HTMLAttributes } from 'react'
+import type { FC, HTMLAttributes } from 'react'
 import styled, { css } from 'styled-components'
 
 import {
-  InnerContainer as Inner,
   ContainerPadding,
+  InnerContainer as Inner,
   breakpointMediaQuery,
 } from '@bootnodedev/db-ui-toolkit'
 
@@ -176,7 +176,11 @@ const Examples: FC<HTMLAttributes<HTMLElement>> = ({ ...restProps }) => {
       text: (
         <>
           Resolve{' '}
-          <a href="https://ens.domains/" rel="noreferrer" target="_blank">
+          <a
+            href="https://ens.domains/"
+            rel="noreferrer"
+            target="_blank"
+          >
             ENS
           </a>{' '}
           names to their corresponding addresses.
@@ -230,7 +234,10 @@ const Examples: FC<HTMLAttributes<HTMLElement>> = ({ ...restProps }) => {
   ]
 
   return (
-    <Wrapper id="examples" {...restProps}>
+    <Wrapper
+      id="examples"
+      {...restProps}
+    >
       <InnerContainer>
         <List items={items} />
       </InnerContainer>

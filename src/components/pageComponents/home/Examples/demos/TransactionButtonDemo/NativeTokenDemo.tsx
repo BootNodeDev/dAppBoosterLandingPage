@@ -1,4 +1,4 @@
-import { useState, type ReactElement } from 'react'
+import { type ReactElement, useState } from 'react'
 import styled, { css } from 'styled-components'
 
 import { GeneralMessage as GeneralMessageBase } from '@bootnodedev/db-ui-toolkit'

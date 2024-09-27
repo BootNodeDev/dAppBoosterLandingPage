@@ -1,7 +1,7 @@
 import { type FC, useState } from 'react'
 
 import TokenDropdown from '@/src/components/sharedComponents/TokenDropdown'
-import { type Token } from '@/src/types/token'
+import type { Token } from '@/src/types/token'
 
 const TokenDropdownDemo: FC = ({ ...restProps }) => {
   const [currentToken, setCurrentToken] = useState<Token>()
@@ -10,7 +10,13 @@ const TokenDropdownDemo: FC = ({ ...restProps }) => {
     setCurrentToken(token)
   }
 
-  return <TokenDropdown currentToken={currentToken} onTokenSelect={onTokenSelect} {...restProps} />
+  return (
+    <TokenDropdown
+      currentToken={currentToken}
+      onTokenSelect={onTokenSelect}
+      {...restProps}
+    />
+  )
 }
 
 export default TokenDropdownDemo

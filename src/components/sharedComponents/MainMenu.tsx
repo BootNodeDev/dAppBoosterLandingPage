@@ -42,16 +42,22 @@ const MainMenu = ({ ...restProps }) => {
         const key = `menuItem_${index}`
 
         return to ? (
-          <Item key={key} to={to}>
+          <Item
+            key={key}
+            to={to}
+          >
             {label}
           </Item>
         ) : href ? (
-          <ExternalItem href={href} key={key} rel="noopener noreferrer" target="_blank">
+          <ExternalItem
+            href={href}
+            key={key}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
             {label}
           </ExternalItem>
-        ) : (
-          <></>
-        )
+        ) : null
       })}
     </Wrapper>
   )

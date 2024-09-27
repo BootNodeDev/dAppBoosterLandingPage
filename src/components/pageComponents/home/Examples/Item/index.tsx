@@ -1,4 +1,4 @@
-import { type FC, type HTMLAttributes, type ReactNode } from 'react'
+import type { FC, HTMLAttributes, ReactNode } from 'react'
 import styled, { css } from 'styled-components'
 
 import { breakpointMediaQuery } from '@bootnodedev/db-ui-toolkit'
@@ -155,8 +155,20 @@ const Item: FC<Props> = ({ demo, href, icon, sourceCodeHref, text, title, ...res
         <Title>{title}</Title>
         <Text>{text}</Text>
         <Buttons>
-          {href && <DocumentationButton as="a" href={href} target="_blank" />}
-          {sourceCodeHref && <SourceCodeButton as="a" href={sourceCodeHref} target="_blank" />}
+          {href && (
+            <DocumentationButton
+              as="a"
+              href={href}
+              target="_blank"
+            />
+          )}
+          {sourceCodeHref && (
+            <SourceCodeButton
+              as="a"
+              href={sourceCodeHref}
+              target="_blank"
+            />
+          )}
         </Buttons>
       </Info>
       <Demo>

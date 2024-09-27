@@ -3,17 +3,17 @@ import styled, { css } from 'styled-components'
 
 import { generateSchemasMapping } from '@bootnodedev/db-subgraph'
 import {
-  ExternalLink,
   CopyButton,
-  Toast,
-  SkeletonLoading,
-  breakpointMediaQuery,
+  ExternalLink,
   Item,
+  SkeletonLoading,
+  Toast,
+  breakpointMediaQuery,
 } from '@bootnodedev/db-ui-toolkit'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import request from 'graphql-request'
 import { toast } from 'react-hot-toast'
-import { arbitrum, base, type Chain, optimism, polygon } from 'viem/chains'
+import { type Chain, arbitrum, base, optimism, polygon } from 'viem/chains'
 
 import { OptionsButton } from '@/src/components/pageComponents/home/Examples/demos/OptionsButton'
 import { OptionsDropdown } from '@/src/components/pageComponents/home/Examples/demos/OptionsDropdown'
@@ -157,7 +157,12 @@ const Copy = ({ value }: { value: string }) => {
     })
   }
 
-  return <CopyButton onClick={handleCopy} value={value} />
+  return (
+    <CopyButton
+      onClick={handleCopy}
+      value={value}
+    />
+  )
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -191,7 +196,9 @@ export const SkeletonLoadingItem = () => (
 )
 
 const appSchemas = generateSchemasMapping({
+  // biome-ignore lint/style/noNonNullAssertion: somebody else's code
   apiKey: env.PUBLIC_SUBGRAPHS_API_KEY!,
+  // biome-ignore lint/style/noNonNullAssertion: somebody else's code
   chainsResourceIds: env.PUBLIC_SUBGRAPHS_CHAINS_RESOURCE_IDS!,
   environment: env.PUBLIC_SUBGRAPHS_ENVIRONMENT,
   productionUrl: env.PUBLIC_SUBGRAPHS_PRODUCTION_URL,
@@ -267,8 +274,11 @@ const List = ({ ...restProps }) => {
           </OptionsButton>
         }
         defaultActiveItem={0}
-        items={dropdownItems.map((item, index) => (
-          <Item key={index} onClick={() => setCurrentChain(item)}>
+        items={dropdownItems.map((item) => (
+          <Item
+            key={`${item.id}`}
+            onClick={() => setCurrentChain(item)}
+          >
             {item.name}
           </Item>
         ))}
@@ -276,7 +286,11 @@ const List = ({ ...restProps }) => {
       {uniswapNetworks.map(
         (chain) =>
           currentChain?.id === chain.id && (
-            <Uniswap chain={chain} key={chain.id} suspenseFallback={<SkeletonLoadingItem />} />
+            <Uniswap
+              chain={chain}
+              key={chain.id}
+              suspenseFallback={<SkeletonLoadingItem />}
+            />
           ),
       )}
       {currentChain?.id === base.id && <Aave suspenseFallback={<SkeletonLoadingItem />} />}
